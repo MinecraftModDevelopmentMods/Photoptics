@@ -22,11 +22,22 @@ group= "abr.mod.photoptics" // http://maven.apache.org/guides/mini/guide-naming-
 archivesBaseName = "Photoptics"
 
 minecraft {
-    version = "1.7.10-10.13.4.1558-1.7.10"
+    version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "run"
 
     replace "@VERSION@", project.version
 }
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
 
 dependencies {
     // you may put jars on which you depend on in ./libs
@@ -62,4 +73,10 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+artifacts {
+    archives deobfJar 
+    archives sourceJar
+    archives jar
 }
