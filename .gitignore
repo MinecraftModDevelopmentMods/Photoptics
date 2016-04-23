@@ -20,9 +20,7 @@ build/
 eclipse/
 run/
 CREDITS-fml.txt
-forge-1.7.2-10.12.1.1060-changelog.txt
-gradlew
-gradlew.bat
+forge-*.txt
 LICENSE-fml.txt
 MinecraftForge-Credits.txt
 MinecraftForge-License.txt
@@ -231,3 +229,6 @@ pip-log.txt
 *.iml
 *.ipr
 *.iws
+gradlew
+
+gradlew.bat
