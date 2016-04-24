@@ -38,10 +38,6 @@ public class ItemTelescopeRendererBase implements IItemRenderer {
             GL11.glTranslatef(0.5f, -0.3f, 0.5F);
             float f6 = 1.5F;
             GL11.glScalef(f6, f6, f6);
-            /*GL11.glRotatef(100.0F, 0.0F, 1.0F, 0.0F);
-            GL11.glRotatef(350.0F, 0.0F, 0.0F, 1.0F);
-            GL11.glRotatef(60.0F, 1.0F, 0.0F, 0.0F);
-            GL11.glTranslatef(0.3f, 1.0f, 0.0F);*/
             ItemRenderer.renderItemIn2D(tessellator, f1, f2, f, f3, iicon.getIconWidth(), iicon.getIconHeight(), 0.0625F);
             GL11.glPopMatrix();
 		}
