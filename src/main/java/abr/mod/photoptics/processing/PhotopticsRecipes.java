@@ -13,6 +13,12 @@ public class PhotopticsRecipes {
 				"g g", "iii", "g g",
 				'g', new ItemStack(Blocks.glass_pane),
 				'i', new ItemStack(Items.iron_ingot));
+		
+		GameRegistry.addShapedRecipe(new ItemStack(PhotopticsItems.basicHandheldTelescope),
+				" G ", " I ", " g ",
+				'G', new ItemStack(Blocks.glass),
+				'g', new ItemStack(Blocks.glass_pane),
+				'I', new ItemStack(Blocks.iron_block));
 	}
 
 }

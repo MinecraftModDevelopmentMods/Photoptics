@@ -10,16 +10,14 @@ import stellarapi.api.StellarAPIReference;
 import stellarapi.api.helper.PlayerItemAccessHelper;
 
 public class TickEventHandler {
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void tickStart(TickEvent.PlayerTickEvent e) {
 		if(e.phase == Phase.START) {
-			ItemStack itemstack = e.player.getCurrentEquippedItem();
+			ItemStack itemstack = e.player.inventory.getCurrentItem();
 			ItemStack itemInUse = PlayerItemAccessHelper.getUsingItem(e.player);
 			
-            if (itemstack != itemInUse) {
-    			e.player.clearItemInUse();
-
-            	if(itemInUse != null && itemInUse.getItem() instanceof ItemTelescopeBase)
+            if (itemInUse != null && (itemstack == null || !itemstack.isItemEqual(itemInUse))) {
+            	if(itemInUse.getItem() instanceof ItemTelescopeBase)
         			StellarAPIReference.updateScope(e.player);
             }
             

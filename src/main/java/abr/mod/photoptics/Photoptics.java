@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.Logger;
 
 import abr.mod.photoptics.item.PhotopticsItems;
+import abr.mod.photoptics.network.PhotopticsNetworkHandler;
 import abr.mod.photoptics.processing.PhotopticsRecipes;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -33,12 +34,19 @@ public class Photoptics {
     
     public static Logger logger;
     
+    private PhotopticsNetworkHandler networkHandler = new PhotopticsNetworkHandler();
+    
+    public PhotopticsNetworkHandler getNetworkHandler() {
+    	return this.networkHandler;
+    }
+    
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) { 
     	logger = event.getModLog();
     	
     	StellarAPIReference.getEventBus().register(new StellarAPIEventHandler());
     	FMLCommonHandler.instance().bus().register(new TickEventHandler());
+    	networkHandler.register();
     	
     	PhotopticsItems.init();
     	

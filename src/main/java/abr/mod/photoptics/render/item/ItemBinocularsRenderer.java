@@ -12,16 +12,15 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
-public class ItemTelescopeRendererBase implements IItemRenderer {
+public class ItemBinocularsRenderer implements IItemRenderer {
 	
 	private IModelCustom model = AdvancedModelLoader.loadModel(
 			new ResourceLocation(Photoptics.resourceid, "textures/items/binoculars.obj"));
 	private ResourceLocation modelTexture =
-			new ResourceLocation(Photoptics.resourceid, "textures/items/basic_binoculars_model.png");
+			new ResourceLocation(Photoptics.resourceid, "textures/items/basic_materials.png");
 	
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		//return type != ItemRenderType.INVENTORY;
 		return true;
 	}
 

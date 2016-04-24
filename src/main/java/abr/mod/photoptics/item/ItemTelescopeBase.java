@@ -1,5 +1,6 @@
 package abr.mod.photoptics.item;
 
+import abr.mod.photoptics.EnumPhotopticsKeys;
 import abr.mod.photoptics.render.overlay.IOverlayRenderer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,9 +27,14 @@ public abstract class ItemTelescopeBase extends Item {
     }
 	
 	public void onUse(ItemStack stack, EntityPlayer player) {
-		player.setItemInUse(stack, Integer.MAX_VALUE);
+		player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 		
 		StellarAPIReference.updateScope(player);
+	}
+	
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack) {
+		return Integer.MAX_VALUE;
 	}
 
 	@Override
@@ -39,6 +45,11 @@ public abstract class ItemTelescopeBase extends Item {
     }
 	
 	public abstract IViewScope getScope(ItemStack stack);
+	
+	/**
+	 * Triggers on both side.
+	 * */
+	public abstract void keyControl(EnumPhotopticsKeys zoomin, EntityPlayer player, ItemStack usingItem);
 	
 	@SideOnly(Side.CLIENT)
 	public abstract IOverlayRenderer getOverlayRenderer(ItemStack stack);

@@ -1,1 +1,6 @@
-item.photoptics.basicbinoculars.name=Binoculars
+item.photoptics.basicbinoculars.name=Basic Binoculars
+item.photoptics.basichandheldtelescope.name=Basic Handheld Telescope
+
+key.category.photoptics=Photoptics
+key.photoptics.zoomin=Zoom In
+key.photoptics.zoomout=Zoom Out
