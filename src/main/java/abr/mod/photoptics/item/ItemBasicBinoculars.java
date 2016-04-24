@@ -2,7 +2,11 @@ package abr.mod.photoptics.item;
 
 import abr.mod.photoptics.render.overlay.IOverlayRenderer;
 import abr.mod.photoptics.render.overlay.OverlayBinocularsRenderer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import stellarapi.api.optics.IViewScope;
 import stellarapi.api.optics.Wavelength;
 
@@ -41,6 +45,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 		return this.scope;
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public IOverlayRenderer getOverlayRenderer(ItemStack stack) {
 		return new OverlayBinocularsRenderer();
