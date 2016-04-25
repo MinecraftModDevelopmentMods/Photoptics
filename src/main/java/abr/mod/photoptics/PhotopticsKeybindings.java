@@ -7,6 +7,8 @@ import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Maps;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -25,6 +27,9 @@ public class PhotopticsKeybindings {
 		
 		keyMap.put(EnumPhotopticsKeys.ZoomIn, this.zoomIn);
 		keyMap.put(EnumPhotopticsKeys.ZoomOut, this.zoomOut);
+		
+		for(KeyBinding binding : keyMap.values())
+			ClientRegistry.registerKeyBinding(binding);
 	}
 	
 	@SubscribeEvent

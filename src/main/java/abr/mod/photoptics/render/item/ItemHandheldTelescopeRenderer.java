@@ -48,14 +48,14 @@ public class ItemHandheldTelescopeRenderer implements IItemRenderer {
 		GL11.glPushMatrix();
 		if(type != ItemRenderType.INVENTORY)
 		{
-			GL11.glTranslated(0.5, 0.0, 0.0);
+			GL11.glTranslated(0.3, 0.0, 0.0);
 			GL11.glScaled(0.01, 0.01, 0.01);
 			GL11.glRotated(180.0, 0.0, 1.0, 0.0);
 			GL11.glRotated(-25.0, 1.0, 0.0, 0.0);
 			GL11.glRotated(15.0, 1.0, 0.0, 1.0);
 		}
 		else {
-			GL11.glTranslated(-0.75, -0.75, 0.0);
+			GL11.glTranslated(-1.2, -1.0, 0.0);
 			GL11.glScaled(0.018, 0.018, 0.018);
 			GL11.glRotated(180.0, 0.0, 1.0, 0.0);
 			GL11.glRotated(90.0, 1.0, 0.0, 0.0);
