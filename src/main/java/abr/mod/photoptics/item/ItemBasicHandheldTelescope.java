@@ -17,7 +17,7 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 	public static final int maxZoom = 20;
 	
 	@Override
-	public IViewScope getScope(final ItemStack stack) {
+	public IViewScope getScope(EntityPlayer player, final ItemStack stack) {
 		return new IViewScope() {
 
 			@Override

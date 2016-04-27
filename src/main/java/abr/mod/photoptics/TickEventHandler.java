@@ -15,11 +15,6 @@ public class TickEventHandler {
 		if(e.phase == Phase.START) {
 			ItemStack itemstack = e.player.inventory.getCurrentItem();
 			ItemStack itemInUse = PlayerItemAccessHelper.getUsingItem(e.player);
-			
-            if (itemInUse != null && (itemstack == null || !itemstack.isItemEqual(itemInUse))) {
-            	if(itemInUse.getItem() instanceof ItemTelescopeBase)
-        			StellarAPIReference.updateScope(e.player);
-            }
             
             if(itemInUse != null && itemInUse.getItem() instanceof ItemTelescopeBase)
             	Photoptics.proxy.forcePerspective();

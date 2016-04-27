@@ -11,19 +11,5 @@ import stellarapi.api.optics.IViewScope;
 
 public class StellarAPIEventHandler {
 	
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public void updateScope(UpdateScopeEvent event) {
-		if(event.getEntity() instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer) event.getEntity();
-			ItemStack itemToCheck = PlayerItemAccessHelper.getUsingItem(player);
-			
-			if(itemToCheck != null && itemToCheck.getItem() instanceof ItemTelescopeBase)
-			{
-				ItemTelescopeBase telescope = (ItemTelescopeBase) itemToCheck.getItem();
-				event.setScope(telescope.getScope(itemToCheck));
-			}
-		}
-	}
 
 }

@@ -17,7 +17,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 	public final int maxZoom = 5;
 	
 	@Override
-	public IViewScope getScope(final ItemStack stack) {
+	public IViewScope getScope(EntityPlayer player, final ItemStack stack) {
 		return new IViewScope() {
 
 				@Override

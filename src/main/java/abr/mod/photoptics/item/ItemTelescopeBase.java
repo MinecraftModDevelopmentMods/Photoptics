@@ -7,12 +7,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import stellarapi.api.StellarAPIReference;
+import stellarapi.api.interact.IViewScopeItem;
 import stellarapi.api.optics.IViewScope;
 
-public abstract class ItemTelescopeBase extends Item {
+public abstract class ItemTelescopeBase extends Item implements IViewScopeItem {
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
@@ -44,8 +44,11 @@ public abstract class ItemTelescopeBase extends Item {
 		StellarAPIReference.updateScope(player);
     }
 	
-	public abstract IViewScope getScope(ItemStack stack);
-	
+	@Override
+	public boolean isSame(ItemStack arg0, ItemStack arg1) {
+		return arg0.getItem() == arg1.getItem();
+	}
+		
 	/**
 	 * Triggers on both side.
 	 * */
