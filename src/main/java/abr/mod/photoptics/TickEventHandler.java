@@ -6,7 +6,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import net.minecraft.item.ItemStack;
-import stellarapi.api.StellarAPIReference;
 import stellarapi.api.helper.PlayerItemAccessHelper;
 
 public class TickEventHandler {
