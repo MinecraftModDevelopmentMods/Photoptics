@@ -6,8 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import stellarapi.api.StellarAPIReference;
+import stellarapi.api.interact.IViewScopeSimulatorEntity;
+import stellarapi.api.optics.IViewScope;
 
-public class EntityTelescopeSimulator extends Entity {
+public class EntityTelescopeSimulator extends Entity implements IViewScopeSimulatorEntity {
 	
 	private EntityPlayer usingPlayer;
 	private TileEntityTelescopeBase telescope;
@@ -54,6 +56,12 @@ public class EntityTelescopeSimulator extends Entity {
 		
 		StellarAPIReference.updateScope(player);
 		return true;
+	}
+
+	@Override
+	public IViewScope getScope(EntityPlayer player) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
