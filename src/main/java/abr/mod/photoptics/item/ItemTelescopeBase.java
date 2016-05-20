@@ -5,8 +5,11 @@ import abr.mod.photoptics.render.overlay.IOverlayRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,34 +19,29 @@ import stellarapi.api.interact.IViewScopeItem;
 public abstract class ItemTelescopeBase extends Item implements IViewScopeItem {
 	
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		this.onUse(stack, player);
-		return stack;
+	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+		if(hand == EnumHand.MAIN_HAND) {
+			this.onUse(player, hand);
+			return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
+		} else return ActionResult.newResult(EnumActionResult.PASS, stack);
 	}
 	
 	@Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
-		this.onUse(stack, player);
-    	return true;
+    public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
+		if(hand == EnumHand.MAIN_HAND) {
+			this.onUse(player, hand);
+			return EnumActionResult.SUCCESS;
+		} else return EnumActionResult.PASS;
     }
 	
-	public void onUse(ItemStack stack, EntityPlayer player) {
-		player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-		
-		StellarAPIReference.updateScope(player);
+	public void onUse(EntityPlayer player, EnumHand hand) {
+		player.setActiveHand(hand);
 	}
 	
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
 		return Integer.MAX_VALUE;
 	}
-
-	@Override
-	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int slot)
-    {
-		player.clearItemInUse();
-		StellarAPIReference.updateScope(player);
-    }
 	
 	@Override
 	public boolean isSame(ItemStack arg0, ItemStack arg1) {

@@ -10,13 +10,13 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import stellarapi.api.helper.PlayerItemAccessHelper;
+import stellarapi.api.helper.LivingItemAccessHelper;
 
 public class RenderEventHandler {
 	
 	@SubscribeEvent
 	public void renderItemInHand(RenderHandEvent event) {
-		ItemStack usingItem = PlayerItemAccessHelper.getUsingItem(Minecraft.getMinecraft().thePlayer);
+		ItemStack usingItem = LivingItemAccessHelper.getUsingItem(Minecraft.getMinecraft().thePlayer);
 		if(usingItem != null && usingItem.getItem() instanceof ItemTelescopeBase)
 			event.setCanceled(true);
 	}
@@ -24,7 +24,7 @@ public class RenderEventHandler {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void renderOverlay(RenderGameOverlayEvent.Pre event) {
 		Minecraft mc = Minecraft.getMinecraft();
-		ItemStack usingItem = PlayerItemAccessHelper.getUsingItem(mc.thePlayer);
+		ItemStack usingItem = LivingItemAccessHelper.getUsingItem(mc.thePlayer);
 		if(usingItem != null && usingItem.getItem() instanceof ItemTelescopeBase)
 		{
 			mc.entityRenderer.setupOverlayRendering();
@@ -32,7 +32,7 @@ public class RenderEventHandler {
 			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 			ItemTelescopeBase item = (ItemTelescopeBase) usingItem.getItem();
-			item.getOverlayRenderer(usingItem).renderOverlay(event.resolution, event.partialTicks);
+			item.getOverlayRenderer(usingItem).renderOverlay(event.getResolution(), event.getPartialTicks());
 			GlStateManager.disableBlend();
 			
 			event.setCanceled(true);

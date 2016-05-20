@@ -3,6 +3,7 @@ package abr.mod.photoptics.item;
 import abr.mod.photoptics.EnumPhotopticsKeys;
 import abr.mod.photoptics.render.overlay.IOverlayRenderer;
 import abr.mod.photoptics.render.overlay.OverlayBinocularsRenderer;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,7 +18,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 	public final int maxZoom = 5;
 	
 	@Override
-	public IViewScope getScope(EntityPlayer player, final ItemStack stack) {
+	public IViewScope getScope(EntityLivingBase player, final ItemStack stack) {
 		return new IViewScope() {
 
 				@Override

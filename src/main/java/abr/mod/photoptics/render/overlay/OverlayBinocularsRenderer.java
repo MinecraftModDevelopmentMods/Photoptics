@@ -4,7 +4,6 @@ import abr.mod.photoptics.Photoptics;
 import abr.mod.photoptics.render.RenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
 public class OverlayBinocularsRenderer implements IOverlayRenderer {

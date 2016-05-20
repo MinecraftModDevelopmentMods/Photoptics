@@ -5,17 +5,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import stellarapi.api.helper.PlayerItemAccessHelper;
+import stellarapi.api.helper.LivingItemAccessHelper;
 
 public class TickEventHandler {
 	@SubscribeEvent(priority = EventPriority.HIGH)
-	public void tickStart(TickEvent.PlayerTickEvent e) {
+	public void onLivingUpdate(TickEvent.PlayerTickEvent e) {
 		if(e.phase == TickEvent.Phase.START) {
 			ItemStack itemstack = e.player.inventory.getCurrentItem();
-			ItemStack itemInUse = PlayerItemAccessHelper.getUsingItem(e.player);
+			ItemStack itemInUse = LivingItemAccessHelper.getUsingItem(e.player);
             
             if(itemInUse != null && itemInUse.getItem() instanceof ItemTelescopeBase)
-            	Photoptics.proxy.forcePerspective();
+            	Photoptics.proxy.forcePerspective(e.player);
 		}
 	}
 }

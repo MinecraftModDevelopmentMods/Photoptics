@@ -2,6 +2,7 @@ package abr.mod.photoptics.entity;
 
 import abr.mod.photoptics.tileentity.TileEntityTelescopeBase;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -42,7 +43,7 @@ public class EntityTelescopeSimulator extends Entity implements IViewScopeSimula
 			return false;
 		
 		this.usingPlayer = player;
-		usingPlayer.mountEntity(this);
+		usingPlayer.startRiding(player, true);
 		
 		StellarAPIReference.updateScope(player);
 		return true;
@@ -59,7 +60,7 @@ public class EntityTelescopeSimulator extends Entity implements IViewScopeSimula
 	}
 
 	@Override
-	public IViewScope getScope(EntityPlayer player) {
+	public IViewScope getScope(EntityLivingBase player) {
 		// TODO Auto-generated method stub
 		return null;
 	}

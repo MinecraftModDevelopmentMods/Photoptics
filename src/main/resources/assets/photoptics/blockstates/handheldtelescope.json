@@ -9,19 +9,19 @@
         "inventory": [{
             "transform": {
                 "firstperson": {
-                    "translation": [0.2, 0, 0.1],
-                    "rotation": [ { "y": 130}, {"x": -110}, {"z": 180} ],
-                    "scale": 0.02
+                    "translation": [0.1, 0, 0],
+                    "rotation": [ { "y": 0}, {"x": -60}, {"z": 0} ],
+                    "scale": 0.007
                 },
                 "thirdperson": {
-                    "translation": [0.0, 0.05, -0.05],
-                    "rotation": [ { "y": 180}, {"x": 90}, {"z": 0} ],
+                    "translation": [0, 0, 0],
+                    "rotation": [ { "y": 0}, {"x": 0}, {"z": 0} ],
                     "scale": 0.007
                 },
                 "gui": {
-                    "translation": [0, 0, -0.4],
-                    "rotation": [ { "y": 90}, {"x": -90}, {"z": 90} ],
-                    "scale": 0.012
+                    "translation": [-0.3, -0.3, 0],
+                    "rotation": [ { "y": 0}, {"x": 0}, {"z": -45} ],
+                    "scale": 0.007
                 }
             }
         }]  
