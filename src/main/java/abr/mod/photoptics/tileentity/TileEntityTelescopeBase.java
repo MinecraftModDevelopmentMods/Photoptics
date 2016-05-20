@@ -4,8 +4,6 @@ import abr.mod.photoptics.entity.EntityTelescopeSimulator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import stellarapi.api.StellarAPIReference;
-import stellarapi.api.optics.IViewScope;
 
 public abstract class TileEntityTelescopeBase extends TileEntity {
 

@@ -1,20 +1,20 @@
 package abr.mod.photoptics.item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class PhotopticsItems {
 	
-	public static Item basicBinoculars;
-	public static Item basicHandheldTelescope;
+	public static final Item basicBinoculars = new ItemBasicBinoculars();
+	public static final Item basicHandheldTelescope= new ItemBasicHandheldTelescope();
 	
 	public static void init() {
-    	basicBinoculars = new ItemBasicBinoculars()
+    	basicBinoculars
     			.setUnlocalizedName("photoptics.basicbinoculars")
     			.setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(1);
     	
-    	basicHandheldTelescope = new ItemBasicHandheldTelescope()
+    	basicHandheldTelescope 
     			.setUnlocalizedName("photoptics.basichandheldtelescope")
     			.setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(1);
     	

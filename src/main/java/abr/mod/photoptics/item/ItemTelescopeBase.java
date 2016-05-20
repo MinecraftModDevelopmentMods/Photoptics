@@ -2,15 +2,16 @@ package abr.mod.photoptics.item;
 
 import abr.mod.photoptics.EnumPhotopticsKeys;
 import abr.mod.photoptics.render.overlay.IOverlayRenderer;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stellarapi.api.StellarAPIReference;
 import stellarapi.api.interact.IViewScopeItem;
-import stellarapi.api.optics.IViewScope;
 
 public abstract class ItemTelescopeBase extends Item implements IViewScopeItem {
 	
@@ -21,7 +22,7 @@ public abstract class ItemTelescopeBase extends Item implements IViewScopeItem {
 	}
 	
 	@Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
 		this.onUse(stack, player);
     	return true;
     }

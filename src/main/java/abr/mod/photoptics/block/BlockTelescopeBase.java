@@ -5,6 +5,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockTelescopeBase extends BlockContainer {
@@ -13,8 +14,8 @@ public class BlockTelescopeBase extends BlockContainer {
 		super(material);
 	}
 	
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		TileEntity tile = world.getTileEntity(x, y, z);
+	public boolean onBlockActivated(World world, BlockPos pos, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileEntityTelescopeBase) {
 			TileEntityTelescopeBase telescope = (TileEntityTelescopeBase) tile;
 			return telescope.onActivatedBy(world, player, hitX, hitY, hitZ);

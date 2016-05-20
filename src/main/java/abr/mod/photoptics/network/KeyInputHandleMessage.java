@@ -1,11 +1,13 @@
 package abr.mod.photoptics.network;
 
 import abr.mod.photoptics.EnumPhotopticsKeys;
+import abr.mod.photoptics.Photoptics;
 import abr.mod.photoptics.PhotopticsTelescopeHandler;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class KeyInputHandleMessage implements IMessage {
 
@@ -37,8 +39,14 @@ public class KeyInputHandleMessage implements IMessage {
 
 		@Override
 		public IMessage onMessage(KeyInputHandleMessage message, MessageContext ctx) {
-			PhotopticsTelescopeHandler.onKeyInput(ctx.getServerHandler().playerEntity,
-					message.keyEnum);
+			final EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+			final EnumPhotopticsKeys key = message.keyEnum;
+			Photoptics.proxy.registerTask(new Runnable() {
+				@Override
+				public void run() {
+					PhotopticsTelescopeHandler.onKeyInput(player, key);
+				}
+			});
 			return null;
 		}
 		
