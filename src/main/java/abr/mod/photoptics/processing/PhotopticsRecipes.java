@@ -11,14 +11,14 @@ public class PhotopticsRecipes {
 	public static void init() {
 		GameRegistry.addShapedRecipe(new ItemStack(PhotopticsItems.basicBinoculars),
 				"g g", "iii", "g g",
-				'g', new ItemStack(Blocks.glass_pane),
-				'i', new ItemStack(Items.iron_ingot));
+				'g', new ItemStack(Blocks.GLASS_PANE),
+				'i', new ItemStack(Items.IRON_INGOT));
 		
 		GameRegistry.addShapedRecipe(new ItemStack(PhotopticsItems.basicHandheldTelescope),
 				" G ", " I ", " g ",
-				'G', new ItemStack(Blocks.glass),
-				'g', new ItemStack(Blocks.glass_pane),
-				'I', new ItemStack(Blocks.iron_block));
+				'G', new ItemStack(Blocks.GLASS),
+				'g', new ItemStack(Blocks.GLASS_PANE),
+				'I', new ItemStack(Blocks.IRON_BLOCK));
 	}
 
 }

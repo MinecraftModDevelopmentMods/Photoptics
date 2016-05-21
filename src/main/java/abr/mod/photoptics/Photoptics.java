@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import stellarapi.api.StellarAPIReference;
 
 @Mod(modid=Photoptics.modid, version=Photoptics.version,
-dependencies="required-after:StellarAPI@[0.3.3.1, 0.3.4.0)", guiFactory="abr.mod.photoptics.config.POConfigGuiFactory")
+dependencies="required-after:StellarAPI@[0.4.3.1, 0.4.4.0)", guiFactory="abr.mod.photoptics.config.POConfigGuiFactory")
 public class Photoptics {
 	public static final String modid = "Photoptics";
 	public static final String resourceid = "photoptics";

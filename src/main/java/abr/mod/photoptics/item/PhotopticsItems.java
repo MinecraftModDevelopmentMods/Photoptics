@@ -12,11 +12,11 @@ public class PhotopticsItems {
 	public static void init() {
     	basicBinoculars
     			.setUnlocalizedName("photoptics.basicbinoculars")
-    			.setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(1);
+    			.setCreativeTab(CreativeTabs.TOOLS).setMaxStackSize(1);
     	
     	basicHandheldTelescope 
     			.setUnlocalizedName("photoptics.basichandheldtelescope")
-    			.setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(1);
+    			.setCreativeTab(CreativeTabs.TOOLS).setMaxStackSize(1);
     	
     	GameRegistry.registerItem(basicBinoculars, "photopticsbasicbinoculars");
     	GameRegistry.registerItem(basicHandheldTelescope, "basichandheldtelescope");
