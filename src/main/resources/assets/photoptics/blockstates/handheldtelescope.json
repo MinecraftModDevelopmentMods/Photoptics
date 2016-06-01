@@ -8,12 +8,22 @@
         "normal": [{}],
         "inventory": [{
             "transform": {
-                "firstperson": {
+                "firstperson_righthand": {
                     "translation": [0.1, 0, 0],
                     "rotation": [ { "y": 0}, {"x": -60}, {"z": 0} ],
                     "scale": 0.007
                 },
-                "thirdperson": {
+                "firstperson_lefthand": {
+                    "translation": [0.1, 0, 0],
+                    "rotation": [ { "y": 0}, {"x": -60}, {"z": 0} ],
+                    "scale": 0.007
+                },
+                "thirdperson_righthand": {
+                    "translation": [0, 0, 0],
+                    "rotation": [ { "y": 0}, {"x": 0}, {"z": 0} ],
+                    "scale": 0.007
+                },
+                "thirdperson_lefthand": {
                     "translation": [0, 0, 0],
                     "rotation": [ { "y": 0}, {"x": 0}, {"z": 0} ],
                     "scale": 0.007
