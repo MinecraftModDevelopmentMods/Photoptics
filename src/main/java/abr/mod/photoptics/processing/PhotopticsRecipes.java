@@ -14,7 +14,7 @@ public class PhotopticsRecipes {
 	public static void init() {
 		for(Item item : PhotopticsItems.binocularsList) {
 			TelescopeMaterial material = ((ItemTelescopeBase) item).getTelescopeMaterial();
-			GameRegistry.addShapedRecipe(new ItemStack(PhotopticsItems.basicBinoculars),
+			GameRegistry.addShapedRecipe(new ItemStack(item),
 					"g g", "iii", "g g",
 					'g', material.recipeItems.get('g'),
 					'i', material.recipeItems.get('i'));
@@ -23,7 +23,7 @@ public class PhotopticsRecipes {
 
 		for(Item item : PhotopticsItems.handheldTelescopeList) {
 			TelescopeMaterial material = ((ItemTelescopeBase) item).getTelescopeMaterial();
-			GameRegistry.addShapedRecipe(new ItemStack(PhotopticsItems.basicHandheldTelescope),
+			GameRegistry.addShapedRecipe(new ItemStack(item),
 					" G ", " I ", " g ",
 					'G', material.recipeItems.get('G'),
 					'g', material.recipeItems.get('g'),
