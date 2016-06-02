@@ -9,12 +9,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import stellarapi.api.StellarAPIReference;
+import stellarapi.api.optics.IOpticalFilter;
 import stellarapi.api.optics.IViewScope;
 import stellarapi.api.optics.Wavelength;
 
 public class ItemBasicBinoculars extends ItemTelescopeBase {
 	
-	public final int maxZoom = 5;
+	public static final int maxZoom = 5;
 	
 	@Override
 	public IViewScope getScope(EntityPlayer player, final ItemStack stack) {
@@ -61,6 +62,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 		};
 	}
 
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IOverlayRenderer getOverlayRenderer(ItemStack stack) {
@@ -89,5 +91,4 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 		
 		StellarAPIReference.updateScope(player);
 	}
-
 }

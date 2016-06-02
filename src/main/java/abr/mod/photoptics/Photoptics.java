@@ -18,6 +18,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import stellarapi.api.StellarAPIReference;
 
+// TODO Total Regeneration
 @Mod(modid=Photoptics.modid, version=Photoptics.version,
 dependencies="required-after:StellarAPI@[0.1.3.1, 0.1.4.0)", guiFactory="abr.mod.photoptics.config.POConfigGuiFactory")
 public class Photoptics {

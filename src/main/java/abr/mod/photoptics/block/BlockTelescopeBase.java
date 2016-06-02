@@ -13,6 +13,7 @@ public class BlockTelescopeBase extends BlockContainer {
 		super(material);
 	}
 	
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		TileEntity tile = world.getTileEntity(x, y, z);
 		if(tile instanceof TileEntityTelescopeBase) {
@@ -23,7 +24,7 @@ public class BlockTelescopeBase extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+	public TileEntity createNewTileEntity(World world, int metadata) {
 		// TODO Auto-generated method stub
 		return null;
 	}

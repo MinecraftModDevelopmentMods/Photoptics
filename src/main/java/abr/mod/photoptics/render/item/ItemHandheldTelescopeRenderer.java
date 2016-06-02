@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import abr.mod.photoptics.Photoptics;
 import abr.mod.photoptics.item.ItemBasicHandheldTelescope;
+import abr.mod.photoptics.item.TelescopeMaterial;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
@@ -17,8 +18,11 @@ public class ItemHandheldTelescopeRenderer implements IItemRenderer {
 	
 	private IModelCustom model = AdvancedModelLoader.loadModel(
 			new ResourceLocation(Photoptics.resourceid, "textures/items/handheldtelescope.obj"));
-	private ResourceLocation modelTexture =
-			new ResourceLocation(Photoptics.resourceid, "textures/items/basic_materials.png");
+	private ResourceLocation modelTexture;
+	
+	public ItemHandheldTelescopeRenderer(TelescopeMaterial material) {
+		this.modelTexture = material.textureLocation;
+	}
 	
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {

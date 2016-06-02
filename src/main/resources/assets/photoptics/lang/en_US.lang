@@ -1,5 +1,15 @@
-item.photoptics.basicbinoculars.name=Basic Binoculars
-item.photoptics.basichandheldtelescope.name=Basic Handheld Telescope
+item.photoptics.binoculars.basic.name=Basic Binoculars
+item.photoptics.handheldtelescope.basic.name=Basic Handheld Telescope
+item.photoptics.binoculars.gold.name=Golden Binoculars
+item.photoptics.handheldtelescope.gold.name=Golden Handheld Telescope
+item.photoptics.binoculars.diamondGreen.name=Diamond Binoculars(Green)
+item.photoptics.handheldtelescope.diamondGreen.name=Diamond Handheld Telescope(Green)
+item.photoptics.binoculars.diamondBlue.name=Diamond Binoculars(Blue)
+item.photoptics.handheldtelescope.diamondBlue.name=Diamond Handheld Telescope(Blue)
+item.photoptics.binoculars.diamondRed.name=Diamond Binoculars(Red)
+item.photoptics.handheldtelescope.diamondRed.name=Diamond Handheld Telescope(Red)
+
+itemGroup.photoptics=Photoptics
 
 key.category.photoptics=Photoptics
 key.photoptics.zoomin=Zoom In

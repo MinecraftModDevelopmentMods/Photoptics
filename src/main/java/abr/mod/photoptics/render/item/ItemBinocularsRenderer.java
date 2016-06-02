@@ -3,10 +3,10 @@ package abr.mod.photoptics.render.item;
 import org.lwjgl.opengl.GL11;
 
 import abr.mod.photoptics.Photoptics;
+import abr.mod.photoptics.item.TelescopeMaterial;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.model.AdvancedModelLoader;
@@ -16,8 +16,11 @@ public class ItemBinocularsRenderer implements IItemRenderer {
 	
 	private IModelCustom model = AdvancedModelLoader.loadModel(
 			new ResourceLocation(Photoptics.resourceid, "textures/items/binoculars.obj"));
-	private ResourceLocation modelTexture =
-			new ResourceLocation(Photoptics.resourceid, "textures/items/basic_materials.png");
+	private ResourceLocation modelTexture;
+	
+	public ItemBinocularsRenderer(TelescopeMaterial material) {
+		this.modelTexture = material.textureLocation;
+	}
 	
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {

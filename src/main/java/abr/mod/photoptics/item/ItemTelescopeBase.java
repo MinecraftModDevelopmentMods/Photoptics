@@ -9,10 +9,33 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import stellarapi.api.StellarAPIReference;
+import stellarapi.api.interact.IOpticalFilterItem;
 import stellarapi.api.interact.IViewScopeItem;
-import stellarapi.api.optics.IViewScope;
+import stellarapi.api.optics.IOpticalFilter;
+import stellarapi.api.optics.Wavelength;
 
-public abstract class ItemTelescopeBase extends Item implements IViewScopeItem {
+public abstract class ItemTelescopeBase extends Item implements IViewScopeItem, IOpticalFilterItem {
+	
+	private TelescopeMaterial material;
+	
+	public Item setTelescopeMaterial(TelescopeMaterial material) {
+		this.material = material;
+		return this;
+	}
+	
+	public TelescopeMaterial getTelescopeMaterial() {
+		return this.material;
+	}
+	
+	@Override
+	public IOpticalFilter getFilter(EntityPlayer player, ItemStack stack) {
+		return new IOpticalFilter() {
+			@Override
+			public double getFilterEfficiency(Wavelength wavelength) {
+				return material.filterProperty.apply(wavelength);
+			}
+		};
+	}
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
