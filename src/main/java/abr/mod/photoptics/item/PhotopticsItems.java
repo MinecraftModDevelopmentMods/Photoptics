@@ -44,22 +44,22 @@ public class PhotopticsItems {
 				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_green.png"))
 				.setRecipeItem('i', new ItemStack(Items.diamond))
 				.setRecipeItem('I', new ItemStack(Blocks.diamond_block))
-				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 5))
-				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 5));
+				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 1, 5))
+				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 1, 5));
 
 		diamondBlue = new TelescopeMaterial("diamondBlue", 0.3, 0.3, 1.0,
 				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_blue.png"))
 				.setRecipeItem('i', new ItemStack(Items.diamond))
 				.setRecipeItem('I', new ItemStack(Blocks.diamond_block))
-				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 3))
-				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 3));
+				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 1, 3))
+				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 1, 3));
 
 		diamondRed = new TelescopeMaterial("diamondRed", 1.0, 0.3, 0.3,
 				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_red.png"))
 				.setRecipeItem('i', new ItemStack(Items.diamond))
 				.setRecipeItem('I', new ItemStack(Blocks.diamond_block))
-				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 14))
-				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 14));
+				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 1, 14))
+				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 1, 14));
     	
 		addMaterialItem(basic);
 		addMaterialItem(gold);
