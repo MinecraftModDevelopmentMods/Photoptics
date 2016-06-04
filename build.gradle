@@ -17,6 +17,7 @@ group= "abr.mod.photoptics" // http://maven.apache.org/guides/mini/guide-naming-
 archivesBaseName = "Photoptics"
 
 minecraft {
+    version = "1.9.4-12.17.0.1951"
     runDir = "run"
 
     mappings = "snapshot_20160604"
