@@ -1,7 +1,9 @@
 package abr.mod.photoptics.item;
 
+import abr.mod.photoptics.Photoptics;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class PhotopticsItems {
@@ -17,9 +19,10 @@ public class PhotopticsItems {
     	basicHandheldTelescope 
     			.setUnlocalizedName("photoptics.basichandheldtelescope")
     			.setCreativeTab(CreativeTabs.TOOLS).setMaxStackSize(1);
-    	
-    	GameRegistry.registerItem(basicBinoculars, "photopticsbasicbinoculars");
-    	GameRegistry.registerItem(basicHandheldTelescope, "basichandheldtelescope");
-	}
 
+    	GameRegistry.register(basicBinoculars,
+    			new ResourceLocation(Photoptics.resourceid, "photopticsbasicbinoculars"));
+    	GameRegistry.register(basicHandheldTelescope,
+    			new ResourceLocation(Photoptics.resourceid, "basichandheldtelescope"));
+	}
 }
