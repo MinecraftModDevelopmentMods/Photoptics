@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import stellarapi.api.StellarAPIReference;
 import stellarapi.api.optics.IOpticalFilter;
 import stellarapi.api.optics.IViewScope;
+import stellarapi.api.optics.NakedScope;
 import stellarapi.api.optics.Wavelength;
 
 public class ItemBasicBinoculars extends ItemTelescopeBase {
@@ -35,7 +36,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 					
 					int zoom = stack.getTagCompound().getInteger("zoom");
 					
-					return 0.2 / Math.sqrt(1.0 + zoom / 10.0);
+					return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt(1.0 + zoom / 10.0);
 				}
 
 				@Override
