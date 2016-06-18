@@ -18,15 +18,16 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class PhotopticsKeybindings {
 	
-	private KeyBinding zoomIn, zoomOut;
 	private EnumMap<EnumPhotopticsKeys, KeyBinding> keyMap = Maps.newEnumMap(EnumPhotopticsKeys.class);
 	
 	public PhotopticsKeybindings() {
-		this.zoomIn = new KeyBinding("key.photoptics.zoomin", Keyboard.KEY_EQUALS, "key.category.photoptics");
-		this.zoomOut = new KeyBinding("key.photoptics.zoomout", Keyboard.KEY_MINUS, "key.category.photoptics");
-		
-		keyMap.put(EnumPhotopticsKeys.ZoomIn, this.zoomIn);
-		keyMap.put(EnumPhotopticsKeys.ZoomOut, this.zoomOut);
+		KeyBinding zoomIn = new KeyBinding("key.photoptics.zoomin", Keyboard.KEY_EQUALS, "key.category.photoptics");
+		KeyBinding zoomOut = new KeyBinding("key.photoptics.zoomout", Keyboard.KEY_MINUS, "key.category.photoptics");
+		KeyBinding observe = new KeyBinding("key.photoptics.observe", Keyboard.KEY_F, "key.category.photoptics");
+
+		keyMap.put(EnumPhotopticsKeys.ZoomIn, zoomIn);
+		keyMap.put(EnumPhotopticsKeys.ZoomOut, zoomOut);
+		keyMap.put(EnumPhotopticsKeys.Observe, observe);
 		
 		for(KeyBinding binding : keyMap.values())
 			ClientRegistry.registerKeyBinding(binding);

@@ -15,12 +15,14 @@ import stellarapi.api.optics.WaveIntensive;
 import stellarapi.api.optics.Wavelength;
 
 public class TelescopeMaterial {
+	public final double lumMultiplier;
+	public final double zoomMultiplier;
 	public final String name;
 	public final WaveIntensive filterProperty;
 	public final ResourceLocation textureLocation;
 	public final Map<Character, ItemStack> recipeItems = Maps.newHashMap();
 
-	public TelescopeMaterial(String name, double red, double green, double blue, ResourceLocation textureLocation) {
+	public TelescopeMaterial(String name, double red, double green, double blue, ResourceLocation textureLocation, double lumMult, double zoomMult) {
 		this.name = name;
 		this.filterProperty = new WaveIntensive(
 				ImmutableMap.of(Wavelength.red, red,
@@ -28,6 +30,9 @@ public class TelescopeMaterial {
 				);
 		this.textureLocation = textureLocation;
 		
+		this.lumMultiplier = lumMult;
+		this.zoomMultiplier = zoomMult;
+
 		this.setRecipeItem('g', new ItemStack(Blocks.glass_pane));
 		this.setRecipeItem('G', new ItemStack(Blocks.glass));
 		this.setRecipeItem('i', new ItemStack(Items.iron_ingot));

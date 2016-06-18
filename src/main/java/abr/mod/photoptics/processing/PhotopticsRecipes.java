@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 public class PhotopticsRecipes {
 	
 	public static void init() {
-		for(Item item : PhotopticsItems.binocularsList) {
+		for(Item item : PhotopticsItems.INSTANCE.binocularsList) {
 			TelescopeMaterial material = ((ItemTelescopeBase) item).getTelescopeMaterial();
 			GameRegistry.addShapedRecipe(new ItemStack(item),
 					"g g", "iii", "g g",
@@ -21,7 +21,7 @@ public class PhotopticsRecipes {
 		}
 		
 
-		for(Item item : PhotopticsItems.handheldTelescopeList) {
+		for(Item item : PhotopticsItems.INSTANCE.handheldTelescopeList) {
 			TelescopeMaterial material = ((ItemTelescopeBase) item).getTelescopeMaterial();
 			GameRegistry.addShapedRecipe(new ItemStack(item),
 					" G ", " I ", " g ",

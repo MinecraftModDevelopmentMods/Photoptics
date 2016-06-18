@@ -24,7 +24,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 
 				@Override
 				public double getLGP() {
-					return 20.0;
+					return 20.0 * getTelescopeMaterial().lumMultiplier;
 				}
 
 				@Override
@@ -36,7 +36,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 					
 					int zoom = stack.getTagCompound().getInteger("zoom");
 					
-					return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt(1.0 + zoom / 10.0);
+					return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt((1.0 + zoom / 10.0) * getTelescopeMaterial().zoomMultiplier);
 				}
 
 				@Override
@@ -48,7 +48,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 					
 					int zoom = stack.getTagCompound().getInteger("zoom");
 					
-					return 3.0 * (1.0 + zoom / 10.0);
+					return 3.0 * (1.0 + zoom / 10.0) * getTelescopeMaterial().zoomMultiplier;
 				}
 
 				@Override

@@ -20,10 +20,10 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public void registerItemRenderers() {
-		for(Item binoculars : PhotopticsItems.binocularsList)
+		for(Item binoculars : PhotopticsItems.INSTANCE.binocularsList)
 			MinecraftForgeClient.registerItemRenderer(binoculars,
 					new ItemBinocularsRenderer(((ItemTelescopeBase) binoculars).getTelescopeMaterial()));
-		for(Item handheldTelescope : PhotopticsItems.handheldTelescopeList)
+		for(Item handheldTelescope : PhotopticsItems.INSTANCE.handheldTelescopeList)
 			MinecraftForgeClient.registerItemRenderer(handheldTelescope,
 					new ItemHandheldTelescopeRenderer(((ItemTelescopeBase) handheldTelescope).getTelescopeMaterial()));
 	}

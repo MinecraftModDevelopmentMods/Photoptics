@@ -47,7 +47,7 @@ public class ItemHandheldTelescopeRenderer implements IItemRenderer {
 		}
 		
 		int zoom = item.getTagCompound().getInteger("zoom");
-		double retro = 1.0 - zoom / (double)ItemBasicHandheldTelescope.maxZoom;
+		double retro = 1.0 - zoom / (double)((ItemBasicHandheldTelescope)item.getItem()).getMaxZoom();
 		
 		GL11.glPushMatrix();
 		if(type != ItemRenderType.INVENTORY)

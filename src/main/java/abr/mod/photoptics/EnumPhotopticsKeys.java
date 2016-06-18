@@ -2,7 +2,7 @@ package abr.mod.photoptics;
 
 public enum EnumPhotopticsKeys {
 	
-	ZoomIn(true), ZoomOut(true);
+	ZoomIn(true), ZoomOut(true), Observe(false);
 	
 	private boolean continuous;
 	
