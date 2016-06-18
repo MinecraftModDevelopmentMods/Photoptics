@@ -30,7 +30,7 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 			@Override
 			public double getLGP() {
 				double mult = getTelescopeMaterial().lumMultiplier;
-				if(getTelescopeMaterial().zoomMultiplier > 1.0) {
+				if(getTelescopeMaterial().zoomMultiplier >= 2.0) {
 					if(!stack.hasTagCompound()) {
 						stack.setTagCompound(new NBTTagCompound());
 						stack.getTagCompound().setInteger("zoom", 0);
@@ -51,9 +51,9 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 				}
 				
 				int zoom = stack.getTagCompound().getInteger("zoom");
-				double zoomFactor = (1.0 + zoom / 15.0) * getTelescopeMaterial().zoomMultiplier;
+				double zoomFactor = (1.0 + zoom / 15.0);
 				
-				return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt(zoomFactor);
+				return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt(zoomFactor) / getTelescopeMaterial().zoomMultiplier;
 			}
 
 			@Override
@@ -103,7 +103,7 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 			current = Math.max(0, current-1);
 			break;
 		case Observe:
-			PhotopticsTelescopeHandler.onObserve(player, 1.0);
+			PhotopticsTelescopeHandler.onObserve(player, 0.7 / getTelescopeMaterial().zoomMultiplier);
 			break;
 		}
 		

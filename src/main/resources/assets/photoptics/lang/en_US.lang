@@ -23,4 +23,4 @@ config.photoptics.category.observations=Observations
 config.photoptics.category.observations.tooltip=Configuration for rewards when certain object is observed.
 
 config.photoptics.property.observations.rewardmap=Observation Rewards
-config.photoptics.property.observations.rewardmap.tooltip=Rewards for Observation of objects. Each line should be in form of '(object name):(reward command)'.
+config.photoptics.property.observations.rewardmap.tooltip=Rewards for Observation of objects. Each line should be in form of '(object name):(reward command splitted by '|')'.

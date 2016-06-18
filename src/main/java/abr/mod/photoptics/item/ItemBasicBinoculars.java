@@ -36,7 +36,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 					
 					int zoom = stack.getTagCompound().getInteger("zoom");
 					
-					return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt((1.0 + zoom / 10.0) * getTelescopeMaterial().zoomMultiplier);
+					return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt((1.0 + zoom / 10.0)) / getTelescopeMaterial().zoomMultiplier;
 				}
 
 				@Override

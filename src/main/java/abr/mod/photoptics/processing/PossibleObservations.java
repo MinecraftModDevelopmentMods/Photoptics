@@ -32,19 +32,36 @@ public class PossibleObservations extends SimpleNBTConfig {
 	public PossibleObservations() {
 		ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
 		builder.put("Sun", "/effect @p 15 3 1");
-		builder.put("Moon", "/summon Enderman");
+		builder.put("Moon", "/summon Enderman|/summon Enderman|/summon Enderman");
 
-		builder.put("Cep0Mu", "/give @p redstone 16");//photoptics.binoculars.golden
-		builder.put("Lyr4Eps", "/give @p iron_pickaxe 2");
+		builder.put("UMa79Zet", "/give @p iron_ingot 4");
+		builder.put("Cep0Mu", "/give @p redstone 16");
+		builder.put("Lyr4Eps", "/give @p iron_pickaxe 2|/give @p iron_ingot 8");
 
 		builder.put("Andromeda Galaxy", "/give @p milk_bucket");
-		builder.put("Messier 15", "/give @p snowball 16");
-		builder.put("Gem5", "/give @p iron 16");
-		builder.put("Pup2", "/give @p iron 16");
-		builder.put("Aur24Phi", "/give @p iron 16");
+
+		builder.put("Orion Nebula", "/give @p potato 2|/give @p carrot 2");
+
+		builder.put("Messier 7", "/give @p iron_ingot 16");
+		builder.put("Messier 24", "/give @p iron_ingot 16");
 		builder.put("Per7", "/give @p bone 8");
-		builder.put("Orion Nebula", "/give @p carrot 2");
-		builder.put("Crab Nebula", "/give @p nether_star");
+
+		builder.put("Trifid Nebula", "/give @p redstone 32|/give @p iron_ingot 8|/give @p dye 16 4");
+
+		builder.put("Messier 15", "/give @p snowball 16");
+
+		builder.put("Gem5", "/give @p iron_ingot 16");
+		builder.put("Pup2", "/give @p iron_ingot 16");
+		builder.put("Aur24Phi", "/give @p iron_ingot 16");
+
+		builder.put("Ring Nebula", "/give @p redstone_block 8|/give @p glowstone 8|/give @p gold_ingot 16");
+		builder.put("Crab Nebula", "/give @p nether_star|/give @p gold_block 8");
+
+		builder.put("Triangulum Galaxy", "/give @p redstone_block 16|/give @p iron_block 8|/give @p gold_block 4|/give @p record_chirp");
+
+		builder.put("Messier 51", "/give @p lapis_block 8|/give @p glowstone 16|/give @p gold_ingot 16");
+		builder.put("Messier 63", "/give @p quartz_block 16|/give @p gold_ingot 16");
+		builder.put("Messier 101", "/give @p dragon_egg|/give @p diamond_block 4|/give @p gold_block 16");
 		this.rewardProperty = new ConfigPropertyStringMap("Observation_Rewards", "observationRewards", builder.build());
 		
 		this.addConfigProperty(this.rewardProperty);
@@ -60,7 +77,7 @@ public class PossibleObservations extends SimpleNBTConfig {
 		
 		rewardProperty.setLanguageKey("config.photoptics.property.observations.rewardmap");
 		rewardProperty.setComment("Rewards for Observation of objects.\n"
-				+ "Each line should be in form of '(object name):(reward command)'.");
+				+ "Each line should be in form of '(object name):(reward commands splitted by '|')'.");
 		rewardProperty.setRequiresWorldRestart(true);
 	}
 	

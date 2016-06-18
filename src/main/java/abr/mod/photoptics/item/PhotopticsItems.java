@@ -43,28 +43,28 @@ public enum PhotopticsItems {
 				.setRecipeItem('I', new ItemStack(Blocks.gold_block));
 		
 		diamondGreen = new TelescopeMaterial("diamondGreen", 0.3, 1.0, 0.3,
-				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_green.png"), 3.0, 1.5)
+				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_green.png"), 5.0, 1.5)
 				.setRecipeItem('i', new ItemStack(Items.diamond))
 				.setRecipeItem('I', new ItemStack(Blocks.diamond_block))
 				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 1, 5))
 				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 1, 5));
 
 		diamondBlue = new TelescopeMaterial("diamondBlue", 0.3, 0.3, 1.0,
-				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_blue.png"), 3.0, 1.5)
+				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_blue.png"), 5.0, 1.5)
 				.setRecipeItem('i', new ItemStack(Items.diamond))
 				.setRecipeItem('I', new ItemStack(Blocks.diamond_block))
 				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 1, 3))
 				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 1, 3));
 
 		diamondRed = new TelescopeMaterial("diamondRed", 1.0, 0.3, 0.3,
-				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_red.png"), 3.0, 1.5)
+				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_red.png"), 5.0, 1.5)
 				.setRecipeItem('i', new ItemStack(Items.diamond))
 				.setRecipeItem('I', new ItemStack(Blocks.diamond_block))
 				.setRecipeItem('g', new ItemStack(Blocks.stained_glass_pane, 1, 14))
 				.setRecipeItem('G', new ItemStack(Blocks.stained_glass, 1, 14));
 
 		ultimate = new TelescopeMaterial("ultimate", 0.5, 1.0, 0.5,
-				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond.png"), 10.0, 2.0)
+				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond.png"), 50.0, 2.0)
 				.setRecipeItem('i', new ItemStack(Blocks.ender_chest))
 				.setRecipeItem('I', new ItemStack(Blocks.enchanting_table))
 				.setRecipeItem('g', new ItemStack(Items.ender_pearl))

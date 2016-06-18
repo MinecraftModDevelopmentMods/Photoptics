@@ -49,10 +49,14 @@ public class PhotopticsTelescopeHandler {
 				Photoptics.logger.info(name);
 				if(command != null && PlayerObservationData.getData(player).onObserve(name)) {
 					MinecraftServer server = MinecraftServer.getServer();
-					server.getCommandManager().executeCommand(server, command);
+					for(String splitted : command.split("\\|"))
+						server.getCommandManager().executeCommand(server, splitted);
+					Photoptics.logger.info("Found");
 					return;
 				}
 			}
+			
+			Photoptics.logger.info("Ended search");
 		}
 	}
 
