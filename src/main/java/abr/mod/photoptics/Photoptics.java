@@ -24,7 +24,7 @@ import stellarapi.api.lib.config.ConfigManager;
 
 // TODO Total Regeneration
 @Mod(modid=Photoptics.modid, version=Photoptics.version,
-dependencies="required-after:StellarAPI@[0.1.3.7, 0.1.4.0)", guiFactory="abr.mod.photoptics.config.POConfigGuiFactory")
+dependencies="required-after:StellarAPI@[0.1.3.8, 0.1.4.0)", guiFactory="abr.mod.photoptics.config.POConfigGuiFactory")
 public class Photoptics {
 	public static final String modid = "Photoptics";
 	public static final String resourceid = "photoptics";
