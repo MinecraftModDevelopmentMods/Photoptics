@@ -21,10 +21,12 @@ import stellarapi.api.lib.config.property.ConfigPropertyList;
 public class PossibleObservations extends SimpleNBTConfig {
 
 	public static final String categoryName = "Observations";
-	private static final PossibleObservations observations = new PossibleObservations();
+	private static PossibleObservations observations;
 
 	public static PossibleObservations instance() {
-		return observations;
+		if(observations != null)
+			return observations;
+		else return observations = new PossibleObservations();
 	}
 
 	private ConfigPropertyStringMap rewardProperty;
