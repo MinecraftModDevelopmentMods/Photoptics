@@ -61,9 +61,9 @@ public class PossibleObservations extends SimpleNBTConfig {
 
 		builder.put("Triangulum Galaxy", "/give @p redstone_block 16|/give @p iron_block 8|/give @p gold_block 4|/give @p record_chirp");
 
-		builder.put("Messier 51", "/give @p lapis_block 8|/give @p glowstone 16|/give @p gold_ingot 16");
-		builder.put("Messier 63", "/give @p quartz_block 16|/give @p gold_ingot 16");
-		builder.put("Messier 101", "/give @p dragon_egg|/give @p diamond_block 4|/give @p gold_block 16");
+		builder.put("Whirlpool Galaxy", "/give @p lapis_block 8|/give @p glowstone 16|/give @p gold_ingot 16");
+		builder.put("Sunflower Galaxy", "/give @p quartz_block 16|/give @p gold_ingot 16");
+		builder.put("Pinwheel Galaxy", "/give @p dragon_egg|/give @p diamond_block 4|/give @p gold_block 16");
 		this.rewardProperty = new ConfigPropertyStringMap("Observation_Rewards", "observationRewards", builder.build());
 		
 		this.addConfigProperty(this.rewardProperty);
