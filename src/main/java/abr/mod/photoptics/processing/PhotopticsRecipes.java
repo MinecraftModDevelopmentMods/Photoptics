@@ -1,24 +1,31 @@
 package abr.mod.photoptics.processing;
 
+import abr.mod.photoptics.item.ItemTelescopeBase;
 import abr.mod.photoptics.item.PhotopticsItems;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import abr.mod.photoptics.item.TelescopeMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class PhotopticsRecipes {
 	
 	public static void init() {
-		GameRegistry.addShapedRecipe(new ItemStack(PhotopticsItems.basicBinoculars),
-				"g g", "iii", "g g",
-				'g', new ItemStack(Blocks.GLASS_PANE),
-				'i', new ItemStack(Items.IRON_INGOT));
-		
-		GameRegistry.addShapedRecipe(new ItemStack(PhotopticsItems.basicHandheldTelescope),
-				" G ", " I ", " g ",
-				'G', new ItemStack(Blocks.GLASS),
-				'g', new ItemStack(Blocks.GLASS_PANE),
-				'I', new ItemStack(Blocks.IRON_BLOCK));
+		for(Item item : PhotopticsItems.INSTANCE.binocularsList) {
+			TelescopeMaterial material = ((ItemTelescopeBase) item).getTelescopeMaterial();
+			GameRegistry.addShapedRecipe(new ItemStack(item),
+					"g g", "iii", "g g",
+					'g', material.recipeItems.get('g'),
+					'i', material.recipeItems.get('i'));
+		}
+
+		for(Item item : PhotopticsItems.INSTANCE.handheldTelescopeList) {
+			TelescopeMaterial material = ((ItemTelescopeBase) item).getTelescopeMaterial();
+			GameRegistry.addShapedRecipe(new ItemStack(item),
+					" G ", " I ", " g ",
+					'G', material.recipeItems.get('G'),
+					'g', material.recipeItems.get('g'),
+					'I', material.recipeItems.get('I'));
+		}
 	}
 
 }

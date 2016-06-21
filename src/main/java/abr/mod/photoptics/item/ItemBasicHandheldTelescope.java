@@ -1,6 +1,7 @@
 package abr.mod.photoptics.item;
 
 import abr.mod.photoptics.EnumPhotopticsKeys;
+import abr.mod.photoptics.PhotopticsTelescopeHandler;
 import abr.mod.photoptics.render.overlay.IOverlayRenderer;
 import abr.mod.photoptics.render.overlay.OverlayTelescopeRenderer;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,12 +11,18 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stellarapi.api.StellarAPIReference;
+import stellarapi.api.lib.math.Spmath;
 import stellarapi.api.optics.IViewScope;
+import stellarapi.api.optics.NakedScope;
 import stellarapi.api.optics.Wavelength;
 
 public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 	
-	public static final int maxZoom = 20;
+	private int maxZoomInitial = 20;
+	
+	public int getMaxZoom() {
+		return this.maxZoomInitial;
+	}
 	
 	@Override
 	public IViewScope getScope(EntityLivingBase player, final ItemStack stack) {
@@ -23,7 +30,18 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 
 			@Override
 			public double getLGP() {
-				return 30.0;
+				double mult = getTelescopeMaterial().lumMultiplier;
+				if(getTelescopeMaterial().zoomMultiplier >= 2.0) {
+					if(!stack.hasTagCompound()) {
+						stack.setTagCompound(new NBTTagCompound());
+						stack.getTagCompound().setInteger("zoom", 0);
+					}
+					
+					int zoom = stack.getTagCompound().getInteger("zoom");
+					mult *= Spmath.sqr(1.0 + zoom / 15.0);
+				}
+
+				return 30.0 * mult;
 			}
 
 			@Override
@@ -34,8 +52,9 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 				}
 				
 				int zoom = stack.getTagCompound().getInteger("zoom");
+				double zoomFactor = (1.0 + zoom / 15.0);
 				
-				return 0.2 / Math.sqrt(1.0 + zoom / 15.0);
+				return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt(zoomFactor) / getTelescopeMaterial().zoomMultiplier;
 			}
 
 			@Override
@@ -47,7 +66,7 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 				
 				int zoom = stack.getTagCompound().getInteger("zoom");
 			
-				return 3.0 * (1.0 + zoom / 15.0);
+				return 3.0 * (1.0 + zoom / 15.0) * getTelescopeMaterial().zoomMultiplier;
 			}
 
 			@Override
@@ -79,10 +98,13 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 		
 		switch(key) {
 		case ZoomIn:
-			current = Math.min(this.maxZoom, current+1);
+			current = Math.min(this.getMaxZoom(), current+1);
 			break;
 		case ZoomOut:
 			current = Math.max(0, current-1);
+			break;
+		case Observe:
+			PhotopticsTelescopeHandler.onObserve(player, 0.7 / getTelescopeMaterial().zoomMultiplier);
 			break;
 		}
 		

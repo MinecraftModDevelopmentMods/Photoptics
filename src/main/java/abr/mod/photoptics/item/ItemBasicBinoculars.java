@@ -10,12 +10,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stellarapi.api.StellarAPIReference;
+import stellarapi.api.optics.IOpticalFilter;
 import stellarapi.api.optics.IViewScope;
+import stellarapi.api.optics.NakedScope;
 import stellarapi.api.optics.Wavelength;
 
 public class ItemBasicBinoculars extends ItemTelescopeBase {
 	
-	public final int maxZoom = 5;
+	public static final int maxZoom = 5;
 	
 	@Override
 	public IViewScope getScope(EntityLivingBase player, final ItemStack stack) {
@@ -23,7 +25,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 
 				@Override
 				public double getLGP() {
-					return 20.0;
+					return 20.0 * getTelescopeMaterial().lumMultiplier;
 				}
 
 				@Override
@@ -35,7 +37,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 					
 					int zoom = stack.getTagCompound().getInteger("zoom");
 					
-					return 0.2 / Math.sqrt(1.0 + zoom / 10.0);
+					return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt((1.0 + zoom / 10.0)) / getTelescopeMaterial().zoomMultiplier;
 				}
 
 				@Override
@@ -47,7 +49,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 					
 					int zoom = stack.getTagCompound().getInteger("zoom");
 					
-					return 3.0 * (1.0 + zoom / 10.0);
+					return 3.0 * (1.0 + zoom / 10.0) * getTelescopeMaterial().zoomMultiplier;
 				}
 
 				@Override
@@ -61,6 +63,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 				}
 		};
 	}
+
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -90,5 +93,4 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 		
 		StellarAPIReference.updateScope(player);
 	}
-
 }

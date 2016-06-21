@@ -2,15 +2,12 @@ package abr.mod.photoptics.entity;
 
 import abr.mod.photoptics.tileentity.TileEntityTelescopeBase;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import stellarapi.api.StellarAPIReference;
-import stellarapi.api.interact.IViewScopeSimulatorEntity;
-import stellarapi.api.optics.IViewScope;
 
-public class EntityTelescopeSimulator extends Entity implements IViewScopeSimulatorEntity {
+public class EntityTelescopeSimulator extends Entity {
 	
 	private EntityPlayer usingPlayer;
 	private TileEntityTelescopeBase telescope;
@@ -57,12 +54,6 @@ public class EntityTelescopeSimulator extends Entity implements IViewScopeSimula
 		
 		StellarAPIReference.updateScope(player);
 		return true;
-	}
-
-	@Override
-	public IViewScope getScope(EntityLivingBase player) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

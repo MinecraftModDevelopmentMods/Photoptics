@@ -1,13 +1,19 @@
 package abr.mod.photoptics;
 
+import abr.mod.photoptics.item.ItemTelescopeBase;
 import abr.mod.photoptics.item.PhotopticsItems;
 import abr.mod.photoptics.render.RenderEventHandler;
 import net.minecraft.client.Minecraft;
+<<<<<<< HEAD
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
+=======
+import net.minecraft.item.Item;
+import net.minecraftforge.client.MinecraftForgeClient;
+>>>>>>> refs/remotes/origin/master
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
@@ -19,7 +25,7 @@ public class ClientProxy extends CommonProxy {
 		FMLCommonHandler.instance().bus().register(new PhotopticsKeybindings());
 		this.registerItemRenderers();
 	}
-	
+
 	public void registerItemRenderers() {
 		OBJLoader.INSTANCE.addDomain(Photoptics.resourceid);
 		ModelLoader.setCustomModelResourceLocation(PhotopticsItems.basicBinoculars,
@@ -32,7 +38,7 @@ public class ClientProxy extends CommonProxy {
 	public void forcePerspective(EntityPlayer player) {
 		if(!(player instanceof EntityPlayerSP))
 			return;
-		
+
 		Minecraft.getMinecraft().gameSettings.hideGUI = false;
 		Minecraft.getMinecraft().gameSettings.thirdPersonView = 0;
 	}

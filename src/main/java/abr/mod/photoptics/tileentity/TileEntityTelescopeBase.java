@@ -17,7 +17,7 @@ public abstract class TileEntityTelescopeBase extends TileEntity {
 
 
 	public boolean onActivatedBy(World world, EntityPlayer player, float hitX, float hitY, float hitZ) {
-		// TODO Auto-generated method stub
+		// TODO Activation Code
 		if(simulator.setPlayer(player)) {
 		} else if(simulator.removePlayer(player)) {
 		}

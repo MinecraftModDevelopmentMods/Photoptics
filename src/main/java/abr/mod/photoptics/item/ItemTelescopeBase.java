@@ -13,10 +13,31 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stellarapi.api.StellarAPIReference;
-import stellarapi.api.interact.IViewScopeItem;
+import stellarapi.api.optics.IOpticalFilter;
+import stellarapi.api.optics.Wavelength;
 
-public abstract class ItemTelescopeBase extends Item implements IViewScopeItem {
+public abstract class ItemTelescopeBase extends Item implements IViewScopeItem, IOpticalFilterItem {
+	
+	private TelescopeMaterial material;
+	
+	public Item setTelescopeMaterial(TelescopeMaterial material) {
+		this.material = material;
+		return this;
+	}
+	
+	public TelescopeMaterial getTelescopeMaterial() {
+		return this.material;
+	}
+	
+	@Override
+	public IOpticalFilter getFilter(EntityPlayer player, ItemStack stack) {
+		return new IOpticalFilter() {
+			@Override
+			public double getFilterEfficiency(Wavelength wavelength) {
+				return material.filterProperty.apply(wavelength);
+			}
+		};
+	}
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {

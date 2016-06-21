@@ -1,28 +1,112 @@
 package abr.mod.photoptics.item;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
 import abr.mod.photoptics.Photoptics;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class PhotopticsItems {
+public enum PhotopticsItems {
+	INSTANCE;
 	
-	public static final Item basicBinoculars = new ItemBasicBinoculars();
-	public static final Item basicHandheldTelescope= new ItemBasicHandheldTelescope();
-	
-	public static void init() {
-    	basicBinoculars
-    			.setUnlocalizedName("photoptics.basicbinoculars")
-    			.setCreativeTab(CreativeTabs.TOOLS).setMaxStackSize(1);
-    	
-    	basicHandheldTelescope 
-    			.setUnlocalizedName("photoptics.basichandheldtelescope")
-    			.setCreativeTab(CreativeTabs.TOOLS).setMaxStackSize(1);
+	public final CreativeTabs tabPhotoptics = new CreativeTabs(Photoptics.resourceid) {
+		@Override
+		public Item getTabIconItem() {
+			return basicBinoculars;
+		}
+	};
 
-    	GameRegistry.register(basicBinoculars,
-    			new ResourceLocation(Photoptics.resourceid, "photopticsbasicbinoculars"));
-    	GameRegistry.register(basicHandheldTelescope,
-    			new ResourceLocation(Photoptics.resourceid, "basichandheldtelescope"));
+	public TelescopeMaterial basic, gold, diamondGreen, diamondBlue, diamondRed, ultimate;
+
+	public Item basicBinoculars;
+	public Item basicHandheldTelescope;
+
+	public List<Item> binocularsList = Lists.newArrayList();
+	public List<Item> handheldTelescopeList = Lists.newArrayList();
+	
+	public void preInit() {
+		basic = new TelescopeMaterial("basic", 0.6, 0.7, 0.8,
+				new ResourceLocation(Photoptics.resourceid, "textures/items/basic_materials.png"), 0.9, 1);
+		
+		gold = new TelescopeMaterial("gold", 0.9, 0.8, 0.5,
+				new ResourceLocation(Photoptics.resourceid, "textures/items/gold_material.png"), 2.0, 1.5)
+				.setRecipeItem('i', new ItemStack(Items.GOLD_INGOT))
+				.setRecipeItem('I', new ItemStack(Blocks.GOLD_BLOCK));
+		
+		diamondGreen = new TelescopeMaterial("diamondGreen", 0.3, 1.0, 0.3,
+				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_green.png"), 5.0, 1.5)
+				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
+				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
+				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 5))
+				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 5));
+
+		diamondBlue = new TelescopeMaterial("diamondBlue", 0.3, 0.3, 1.0,
+				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_blue.png"), 5.0, 1.5)
+				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
+				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
+				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 3))
+				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 3));
+
+		diamondRed = new TelescopeMaterial("diamondRed", 1.0, 0.3, 0.3,
+				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond_red.png"), 5.0, 1.5)
+				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
+				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
+				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 14))
+				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 14));
+
+		ultimate = new TelescopeMaterial("ultimate", 0.5, 1.0, 0.5,
+				new ResourceLocation(Photoptics.resourceid, "textures/items/diamond.png"), 50.0, 2.0)
+				.setRecipeItem('i', new ItemStack(Blocks.ENDER_CHEST))
+				.setRecipeItem('I', new ItemStack(Blocks.ENCHANTING_TABLE))
+				.setRecipeItem('g', new ItemStack(Items.ENDER_PEARL))
+				.setRecipeItem('G', new ItemStack(Items.ENDER_EYE));
+
+		addMaterialItem(basic);
+		addMaterialItem(gold);
+		addMaterialItem(diamondGreen);
+		addMaterialItem(diamondBlue);
+		addMaterialItem(diamondRed);
+		addMaterialItem(ultimate);
+		
+		for(Item binoculars : binocularsList) {
+			TelescopeMaterial material = ((ItemTelescopeBase) binoculars).getTelescopeMaterial();
+			if(material == basic) {
+				basicBinoculars = binoculars;
+				basicBinoculars.setRegistryName(new ResourceLocation(Photoptics.resourceid, "photopticsbasicbinoculars"));
+			}
+
+			GameRegistry.register(binoculars);
+		}
+		
+		for(Item handheldTelescope : handheldTelescopeList) {
+			TelescopeMaterial material = ((ItemTelescopeBase) handheldTelescope).getTelescopeMaterial();
+			if(material == basic) {
+				basicHandheldTelescope = handheldTelescope;
+				basicHandheldTelescope.setRegistryName(new ResourceLocation(Photoptics.resourceid, "basichandheldtelescope"));
+			}
+
+			GameRegistry.register(handheldTelescope);
+		}
+	}
+
+	public void addMaterialItem(TelescopeMaterial material) {
+		binocularsList.add(new ItemBasicBinoculars()
+    			.setTelescopeMaterial(material)
+    			.setRegistryName(new ResourceLocation(Photoptics.resourceid, String.format("binoculars_%s", material.name.toLowerCase())))
+    			.setUnlocalizedName(String.format("photoptics.binoculars.%s", material.name))
+    			.setCreativeTab(tabPhotoptics).setMaxStackSize(1));
+    	
+		handheldTelescopeList.add(new ItemBasicHandheldTelescope()
+    			.setTelescopeMaterial(material)
+    			.setRegistryName(new ResourceLocation(Photoptics.resourceid, String.format("handheldtelescope_%s", material.name.toLowerCase())))
+    			.setUnlocalizedName(String.format("photoptics.handheldtelescope.%s", material.name))
+    			.setCreativeTab(tabPhotoptics).setMaxStackSize(1));
 	}
 }

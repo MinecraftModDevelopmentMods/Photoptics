@@ -13,14 +13,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stellarapi.api.helper.LivingItemAccessHelper;
 
 public class RenderEventHandler {
-	
-	@SubscribeEvent
-	public void renderItemInHand(RenderHandEvent event) {
-		ItemStack usingItem = LivingItemAccessHelper.getUsingItem(Minecraft.getMinecraft().thePlayer);
-		if(usingItem != null && usingItem.getItem() instanceof ItemTelescopeBase)
-			event.setCanceled(true);
-	}
-	
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void renderOverlay(RenderGameOverlayEvent.Pre event) {
 		Minecraft mc = Minecraft.getMinecraft();
@@ -38,5 +30,4 @@ public class RenderEventHandler {
 			event.setCanceled(true);
 		}
 	}
-
 }
