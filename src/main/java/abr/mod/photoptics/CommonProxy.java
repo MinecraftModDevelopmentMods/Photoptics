@@ -1,12 +1,12 @@
 package abr.mod.photoptics;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLivingBase;
 
 public class CommonProxy {
 
 	public void registerRenderers() { }
 	
-	public void forcePerspective(EntityPlayer player) { }
+	public void forcePerspective(EntityLivingBase viewer) { }
 
 	public void registerTask(Runnable task) { }
 
