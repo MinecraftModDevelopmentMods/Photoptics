@@ -18,13 +18,5 @@ public class TickEventHandler {
 
 		if(itemInUse != null && itemInUse.getItem() instanceof ItemTelescopeBase)
 			Photoptics.proxy.forcePerspective(event.getEntityLiving());
-		
-		ItemStack offHandStack = event.getEntityLiving().getHeldItemOffhand();
-		if(offHandStack != null && itemInUse == null) {
-			LivingItemAccessHelper.setUsingItem(event.getEntityLiving(), offHandStack);
-			StellarAPIReference.updateScope(event.getEntityLiving());
-			LivingItemAccessHelper.setUsingItem(event.getEntityLiving(), itemInUse);
-			Photoptics.proxy.forcePerspective(event.getEntityLiving());
-		}
 	}
 }
