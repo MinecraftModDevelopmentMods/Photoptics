@@ -28,8 +28,8 @@ public enum PhotopticsItems {
 	public Item basicBinoculars;
 	public Item basicHandheldTelescope;
 
-	public List<Item> binocularsList = Lists.newArrayList();
-	public List<Item> handheldTelescopeList = Lists.newArrayList();
+	public List<ItemTelescopeBase> binocularsList = Lists.newArrayList();
+	public List<ItemTelescopeBase> handheldTelescopeList = Lists.newArrayList();
 	
 	public void preInit() {
 		basic = new TelescopeMaterial("basic", 0.6, 0.7, 0.8,
@@ -75,37 +75,39 @@ public enum PhotopticsItems {
 		addMaterialItem(diamondRed);
 		addMaterialItem(ultimate);
 		
-		for(Item binoculars : binocularsList) {
+		for(ItemTelescopeBase binoculars : binocularsList) {
 			TelescopeMaterial material = ((ItemTelescopeBase) binoculars).getTelescopeMaterial();
 			if(material == basic) {
 				basicBinoculars = binoculars;
-				basicBinoculars.setRegistryName(new ResourceLocation(Photoptics.resourceid, "photopticsbasicbinoculars"));
+				binoculars.setTelescopeRegistryName(new ResourceLocation(Photoptics.resourceid, "photopticsbasicbinoculars"));
 			}
 
+			binoculars.preRegister();
 			GameRegistry.register(binoculars);
 		}
 		
-		for(Item handheldTelescope : handheldTelescopeList) {
+		for(ItemTelescopeBase handheldTelescope : handheldTelescopeList) {
 			TelescopeMaterial material = ((ItemTelescopeBase) handheldTelescope).getTelescopeMaterial();
 			if(material == basic) {
 				basicHandheldTelescope = handheldTelescope;
-				basicHandheldTelescope.setRegistryName(new ResourceLocation(Photoptics.resourceid, "basichandheldtelescope"));
+				handheldTelescope.setTelescopeRegistryName(new ResourceLocation(Photoptics.resourceid, "basichandheldtelescope"));
 			}
 
+			handheldTelescope.preRegister();
 			GameRegistry.register(handheldTelescope);
 		}
 	}
 
 	public void addMaterialItem(TelescopeMaterial material) {
-		binocularsList.add(new ItemBasicBinoculars()
+		binocularsList.add((ItemTelescopeBase) new ItemBasicBinoculars()
     			.setTelescopeMaterial(material)
-    			.setRegistryName(new ResourceLocation(Photoptics.resourceid, String.format("binoculars_%s", material.name.toLowerCase())))
+    			.setTelescopeRegistryName(new ResourceLocation(Photoptics.resourceid, String.format("binoculars_%s", material.name.toLowerCase())))
     			.setUnlocalizedName(String.format("photoptics.binoculars.%s", material.name))
     			.setCreativeTab(tabPhotoptics).setMaxStackSize(1));
     	
-		handheldTelescopeList.add(new ItemBasicHandheldTelescope()
+		handheldTelescopeList.add((ItemTelescopeBase) new ItemBasicHandheldTelescope()
     			.setTelescopeMaterial(material)
-    			.setRegistryName(new ResourceLocation(Photoptics.resourceid, String.format("handheldtelescope_%s", material.name.toLowerCase())))
+    			.setTelescopeRegistryName(new ResourceLocation(Photoptics.resourceid, String.format("handheldtelescope_%s", material.name.toLowerCase())))
     			.setUnlocalizedName(String.format("photoptics.handheldtelescope.%s", material.name))
     			.setCreativeTab(tabPhotoptics).setMaxStackSize(1));
 	}

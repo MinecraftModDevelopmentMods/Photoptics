@@ -13,7 +13,6 @@ import net.minecraft.nbt.NBTTagByte;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stellarapi.api.StellarAPIReference;
-import stellarapi.api.interact.IOpticalProperties;
 import stellarapi.api.lib.math.Spmath;
 import stellarapi.api.optics.IOpticalFilter;
 import stellarapi.api.optics.IViewScope;
@@ -119,7 +118,7 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 	}
 
 	@Override
-	public IOpticalProperties getOpticalProperty(ItemStack stack) {
+	public ITelescopeProperty getOpticalProperty(ItemStack stack) {
 		return new HandheldTelescopeOpticalProperty();
 	}
 }
