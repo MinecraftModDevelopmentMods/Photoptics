@@ -7,7 +7,6 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stellarapi.api.StellarAPIReference;
-import stellarapi.api.helper.LivingItemAccessHelper;
 
 public class TickEventHandler {
 	@SubscribeEvent(priority = EventPriority.HIGH)
@@ -20,11 +19,7 @@ public class TickEventHandler {
 			Photoptics.proxy.forcePerspective(event.getEntityLiving());
 		
 		ItemStack offHandStack = event.getEntityLiving().getHeldItemOffhand();
-		if(offHandStack != null && itemInUse == null) {
-			LivingItemAccessHelper.setUsingItem(event.getEntityLiving(), offHandStack);
+		if(offHandStack.getItem() instanceof ItemTelescopeBase)
 			StellarAPIReference.updateScope(event.getEntityLiving());
-			LivingItemAccessHelper.setUsingItem(event.getEntityLiving(), itemInUse);
-			Photoptics.proxy.forcePerspective(event.getEntityLiving());
-		}
 	}
 }

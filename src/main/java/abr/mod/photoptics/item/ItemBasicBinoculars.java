@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagByte;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stellarapi.api.StellarAPIReference;
+import stellarapi.api.interact.IOpticalProperties;
 import stellarapi.api.optics.IOpticalFilter;
 import stellarapi.api.optics.IViewScope;
 import stellarapi.api.optics.NakedScope;
@@ -104,7 +105,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 	}
 
 	@Override
-	public ITelescopeProperty getOpticalProperty(ItemStack stack) {
+	public IOpticalProperties getOpticalProperty(ItemStack stack) {
 		return new BinocularsOpticalProperty();
 	}
 }

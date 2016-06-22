@@ -1,5 +1,6 @@
 package abr.mod.photoptics.item;
 
+import abr.mod.photoptics.EnumPhotopticsKeys;
 import abr.mod.photoptics.render.overlay.IOverlayRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -9,28 +10,20 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stellarapi.api.interact.IOpticalProperties;
+import stellarapi.api.optics.IOpticalFilter;
+import stellarapi.api.optics.Wavelength;
 
 public abstract class ItemTelescopeBase extends Item {
 
-	private ResourceLocation registryName;
 	private TelescopeMaterial material;
 	
-	public ItemTelescopeBase setTelescopeRegistryName(ResourceLocation registryName) {
-		this.registryName = registryName;
-		return this;
-	}
-	
-	public void preRegister() {
-		super.setRegistryName(this.registryName);
-	}
-	
-	public ItemTelescopeBase setTelescopeMaterial(TelescopeMaterial material) {
+	public Item setTelescopeMaterial(TelescopeMaterial material) {
 		this.material = material;
 		return this;
 	}
@@ -41,18 +34,14 @@ public abstract class ItemTelescopeBase extends Item {
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-		if(hand == EnumHand.MAIN_HAND) {
-			player.setActiveHand(hand);
-			return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
-		} else return ActionResult.newResult(EnumActionResult.PASS, stack);
+		this.onUse(player, hand);
+		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 	}
 	
 	@Override
     public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
-		if(hand == EnumHand.MAIN_HAND) {
-			player.setActiveHand(hand);
-			return EnumActionResult.SUCCESS;
-		} else return EnumActionResult.PASS;
+		this.onUse(player, hand);
+		return EnumActionResult.SUCCESS;
     }
 	
 	public void onUse(EntityPlayer player, EnumHand hand) {
