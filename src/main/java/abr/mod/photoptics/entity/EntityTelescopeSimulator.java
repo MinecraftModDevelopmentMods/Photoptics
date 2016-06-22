@@ -25,13 +25,13 @@ public class EntityTelescopeSimulator extends Entity {
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
-		// TODO read
+		// TODO read entity
 		
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {
-		// TODO write
+		// TODO write entity
 		
 	}
 	
