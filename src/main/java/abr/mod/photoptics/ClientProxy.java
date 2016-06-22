@@ -1,19 +1,14 @@
 package abr.mod.photoptics;
 
-import abr.mod.photoptics.item.ItemTelescopeBase;
 import abr.mod.photoptics.item.PhotopticsItems;
 import abr.mod.photoptics.render.RenderEventHandler;
 import net.minecraft.client.Minecraft;
-<<<<<<< HEAD
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
-=======
-import net.minecraft.item.Item;
-import net.minecraftforge.client.MinecraftForgeClient;
->>>>>>> refs/remotes/origin/master
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
@@ -28,15 +23,20 @@ public class ClientProxy extends CommonProxy {
 
 	public void registerItemRenderers() {
 		OBJLoader.INSTANCE.addDomain(Photoptics.resourceid);
-		ModelLoader.setCustomModelResourceLocation(PhotopticsItems.basicBinoculars,
-				0, new ModelResourceLocation(Photoptics.resourceid + ":" + "binoculars", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(PhotopticsItems.basicHandheldTelescope,
-				0, new ModelResourceLocation(Photoptics.resourceid + ":" + "handheldtelescope", "inventory"));
+		for(Item binocular : PhotopticsItems.INSTANCE.binocularsList) {
+			ModelLoader.setCustomModelResourceLocation(binocular,
+					0, new ModelResourceLocation(Photoptics.resourceid + ":" + "binoculars", "inventory"));
+		}
+
+		for(Item handheldTelescope : PhotopticsItems.INSTANCE.handheldTelescopeList) {
+			ModelLoader.setCustomModelResourceLocation(handheldTelescope,
+					0, new ModelResourceLocation(Photoptics.resourceid + ":" + "handheldtelescope", "inventory"));
+		}
 	}
-	
+
 	@Override
-	public void forcePerspective(EntityPlayer player) {
-		if(!(player instanceof EntityPlayerSP))
+	public void forcePerspective(EntityLivingBase viewer) {
+		if(!(viewer instanceof EntityPlayerSP))
 			return;
 
 		Minecraft.getMinecraft().gameSettings.hideGUI = false;
