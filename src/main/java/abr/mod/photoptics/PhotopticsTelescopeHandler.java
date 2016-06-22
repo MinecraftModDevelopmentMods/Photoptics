@@ -34,7 +34,7 @@ public class PhotopticsTelescopeHandler {
 		}
 
 
-		ItemStack offhandItem = player.getHeldItemOffhand();
+		/*ItemStack offhandItem = player.getHeldItemOffhand();
 		
 		if(offhandItem != null && offhandItem.hasCapability(StellarAPICapabilities.OPTICAL_PROPERTY, EnumFacing.UP)) {
 			IOpticalProperties capability = offhandItem.getCapability(StellarAPICapabilities.OPTICAL_PROPERTY, EnumFacing.UP);
@@ -42,7 +42,7 @@ public class PhotopticsTelescopeHandler {
 				ITelescopeProperty property = (ITelescopeProperty) capability;
 				property.keyControl(key, player);
 			}
-		}
+		}*/
 	}
 
 	/**
