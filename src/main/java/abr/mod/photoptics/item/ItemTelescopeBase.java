@@ -58,7 +58,7 @@ public abstract class ItemTelescopeBase extends Item {
 		return new PhotopticsPropertyProvider(this.getOpticalProperty(stack));
 	}
 	
-	public abstract ITelescopeProperty getOpticalProperty(ItemStack stack);
+	public abstract IOpticalProperties getOpticalProperty(ItemStack stack);
 	
 	@SideOnly(Side.CLIENT)
 	public abstract IOverlayRenderer getOverlayRenderer(ItemStack stack);
