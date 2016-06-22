@@ -17,6 +17,7 @@ import stellarapi.api.celestials.ICelestialObject;
 import stellarapi.api.helper.LivingItemAccessHelper;
 import stellarapi.api.interact.IOpticalProperties;
 import stellarapi.api.lib.math.SpCoord;
+import stellarapi.api.optics.IViewScope;
 
 public class PhotopticsTelescopeHandler {
 	
@@ -49,15 +50,24 @@ public class PhotopticsTelescopeHandler {
 		SpCoord currentDirection = new SpCoord(( - rotationYaw) % 360.0, rotationPitch);
 		
 		CelestialCollectionManager manager = StellarAPIReference.getCollectionManager(player.worldObj);
-		if(manager != null) {
+		IViewScope scope = StellarAPIReference.getScope(player);
+
+		if(manager != null && scope != null) {
 			for(ICelestialObject object : manager.findAllObjectsInRange(currentDirection, observeRange)) {
+				double magnitude = object.getStandardMagnitude();
+				magnitude -= 2.5 * Math.log10(scope.getLGP());
+				if(magnitude < 6.0)
+					return;
+
 				String name = object.getName();
 				String command = PossibleObservations.instance().entryMap().get(name);
 				Photoptics.logger.info(name);
 				if(command != null && player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).onObserve(object)) {
 					MinecraftServer server = player.getServer();
-					for(String splitted : command.split(";"))
+					for(String splitted : command.split(";")) {
+						splitted.replace("@p", player.getUniqueID().toString());
 						server.getCommandManager().executeCommand(server, splitted);
+					}
 					Photoptics.logger.info("Found");
 					return;
 				}

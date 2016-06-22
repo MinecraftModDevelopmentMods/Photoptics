@@ -18,6 +18,8 @@ key.photoptics.zoomin=Zoom In
 key.photoptics.zoomout=Zoom Out
 key.photoptics.observe=Observe
 
+command.photoptics.observe.description=/observe setlimit|resetcount <player> <ObjectID> [count]
+
 
 config.photoptics.category.observations=Observations
 config.photoptics.category.observations.tooltip=Configuration for rewards when certain object is observed.

@@ -12,4 +12,14 @@ public interface IObservationData extends INBTSerializable {
 	 * Gives false iff. it has already been observed.
 	 * */
 	public boolean onObserve(ICelestialObject object);
+	
+	/**
+	 * Resets count for the object.
+	 * */
+	public void reset(String objectID, short count);
+	
+	/**
+	 * Sets the count limit for the object.
+	 * */
+	public void setLimit(String objectID, short limit);
 }

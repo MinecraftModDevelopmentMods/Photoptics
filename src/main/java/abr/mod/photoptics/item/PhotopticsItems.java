@@ -33,36 +33,36 @@ public enum PhotopticsItems {
 	
 	public void preInit() {
 		basic = new TelescopeMaterial("basic", 0.6, 0.7, 0.8,
-				"basic_materials", 0.9, 1);
+				"basic_materials", 1.0, 1.2);
 		
 		gold = new TelescopeMaterial("gold", 0.9, 0.8, 0.5,
-				"gold_material", 3.0, 1.5)
+				"gold_material", 3.0, 2.0)
 				.setRecipeItem('i', new ItemStack(Items.GOLD_INGOT))
 				.setRecipeItem('I', new ItemStack(Blocks.GOLD_BLOCK));
 		
 		diamondGreen = new TelescopeMaterial("diamondGreen", 0.3, 1.0, 0.3,
-				"diamond_green", 8.0, 2.0)
+				"diamond_green", 8.0, 2.5)
 				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
 				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
 				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 5))
 				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 5));
 
 		diamondBlue = new TelescopeMaterial("diamondBlue", 0.3, 0.3, 1.0,
-				"diamond_blue", 8.0, 2.0)
+				"diamond_blue", 8.0, 2.5)
 				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
 				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
 				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 3))
 				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 3));
 
 		diamondRed = new TelescopeMaterial("diamondRed", 1.0, 0.3, 0.3,
-				"diamond_red", 8.0, 2.0)
+				"diamond_red", 8.0, 2.5)
 				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
 				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
 				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 14))
 				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 14));
 
 		ultimate = new TelescopeMaterial("ultimate", 0.5, 1.0, 0.5,
-				"ultimate", 50.0, 5.0)
+				"ultimate", 80.0, 5.0)
 				.setRecipeItem('i', new ItemStack(Blocks.ENDER_CHEST))
 				.setRecipeItem('I', new ItemStack(Blocks.ENCHANTING_TABLE))
 				.setRecipeItem('g', new ItemStack(Items.ENDER_PEARL))
