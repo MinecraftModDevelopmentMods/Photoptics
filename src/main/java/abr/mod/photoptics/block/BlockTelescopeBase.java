@@ -25,7 +25,7 @@ public class BlockTelescopeBase extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata) {
-		// TODO Auto-generated method stub
+		// TODO Create TileEntity
 		return null;
 	}
 	

@@ -5,19 +5,22 @@ import abr.mod.photoptics.render.overlay.IOverlayRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stellarapi.api.interact.IOpticalProperties;
 import stellarapi.api.optics.IOpticalFilter;
 import stellarapi.api.optics.Wavelength;
 
-public abstract class ItemTelescopeBase extends Item implements IViewScopeItem, IOpticalFilterItem {
-	
+public abstract class ItemTelescopeBase extends Item {
+
 	private TelescopeMaterial material;
 	
 	public Item setTelescopeMaterial(TelescopeMaterial material) {
@@ -27,16 +30,6 @@ public abstract class ItemTelescopeBase extends Item implements IViewScopeItem, 
 	
 	public TelescopeMaterial getTelescopeMaterial() {
 		return this.material;
-	}
-	
-	@Override
-	public IOpticalFilter getFilter(EntityPlayer player, ItemStack stack) {
-		return new IOpticalFilter() {
-			@Override
-			public double getFilterEfficiency(Wavelength wavelength) {
-				return material.filterProperty.apply(wavelength);
-			}
-		};
 	}
 	
 	@Override
@@ -61,14 +54,11 @@ public abstract class ItemTelescopeBase extends Item implements IViewScopeItem, 
 	}
 	
 	@Override
-	public boolean isSame(ItemStack arg0, ItemStack arg1) {
-		return arg0.getItem() == arg1.getItem();
+	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound tag) {
+		return new PhotopticsPropertyProvider(this.getOpticalProperty(stack));
 	}
-		
-	/**
-	 * Triggers on both side.
-	 * */
-	public abstract void keyControl(EnumPhotopticsKeys zoomin, EntityPlayer player, ItemStack usingItem);
+	
+	public abstract IOpticalProperties getOpticalProperty(ItemStack stack);
 	
 	@SideOnly(Side.CLIENT)
 	public abstract IOverlayRenderer getOverlayRenderer(ItemStack stack);

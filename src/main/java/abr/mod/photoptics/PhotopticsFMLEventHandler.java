@@ -1,14 +1,13 @@
 package abr.mod.photoptics;
 
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PhotopticsFMLEventHandler {
 	
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if(event.modID == Photoptics.modid)
+		if(event.getModID().equals(Photoptics.modid))
 			Photoptics.instance.getConfigManager().syncFromGUI();
 	}
 

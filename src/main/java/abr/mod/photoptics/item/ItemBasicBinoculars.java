@@ -6,10 +6,13 @@ import abr.mod.photoptics.render.overlay.OverlayBinocularsRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTBase.NBTPrimitive;
+import net.minecraft.nbt.NBTTagByte;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stellarapi.api.StellarAPIReference;
+import stellarapi.api.interact.IOpticalProperties;
 import stellarapi.api.optics.IOpticalFilter;
 import stellarapi.api.optics.IViewScope;
 import stellarapi.api.optics.NakedScope;
@@ -19,9 +22,32 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 	
 	public static final int maxZoom = 5;
 	
-	@Override
-	public IViewScope getScope(EntityLivingBase player, final ItemStack stack) {
-		return new IViewScope() {
+	private class BinocularsOpticalProperty implements ITelescopeProperty {
+		private byte zoom;
+		
+		@Override
+		public boolean isFilter() {
+			return true;
+		}
+
+		@Override
+		public IOpticalFilter getFilter(EntityLivingBase viewer) {
+			return new IOpticalFilter() {
+				@Override
+				public double getFilterEfficiency(Wavelength wavelength) {
+					return getTelescopeMaterial().filterProperty.apply(wavelength);
+				}
+			};
+		}
+
+		@Override
+		public boolean isScope() {
+			return true;
+		}
+
+		@Override
+		public IViewScope getScope(EntityLivingBase viewer) {
+			return new IViewScope() {
 
 				@Override
 				public double getLGP() {
@@ -30,25 +56,11 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 
 				@Override
 				public double getResolution(Wavelength wl) {
-					if(!stack.hasTagCompound()) {
-						stack.setTagCompound(new NBTTagCompound());
-						stack.getTagCompound().setInteger("zoom", 0);
-					}
-					
-					int zoom = stack.getTagCompound().getInteger("zoom");
-					
 					return NakedScope.DEFAULT_RESOLUTION * 0.6 / Math.sqrt((1.0 + zoom / 10.0)) / getTelescopeMaterial().zoomMultiplier;
 				}
 
 				@Override
 				public double getMP() {
-					if(!stack.hasTagCompound()) {
-						stack.setTagCompound(new NBTTagCompound());
-						stack.getTagCompound().setInteger("zoom", 0);
-					}
-					
-					int zoom = stack.getTagCompound().getInteger("zoom");
-					
 					return 3.0 * (1.0 + zoom / 10.0) * getTelescopeMaterial().zoomMultiplier;
 				}
 
@@ -61,9 +73,30 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 				public boolean isFOVCoverSky() {
 					return true;
 				}
-		};
-	}
+			};
+		}
 
+		@Override
+		public void keyControl(EnumPhotopticsKeys key, EntityPlayer controller) {
+			if(key == EnumPhotopticsKeys.ZoomIn && this.zoom < maxZoom) {
+				this.zoom++;
+				StellarAPIReference.updateScope(controller);
+			} else if(key == EnumPhotopticsKeys.ZoomOut && this.zoom > 0) {
+				this.zoom--;
+				StellarAPIReference.updateScope(controller);
+			}
+		}
+
+		@Override
+		public NBTBase serializeNBT() {
+			return new NBTTagByte(this.zoom);
+		}
+
+		@Override
+		public void deserializeNBT(NBTBase nbt) {
+			this.zoom = ((NBTPrimitive)nbt).getByte();
+		}
+	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -72,25 +105,7 @@ public class ItemBasicBinoculars extends ItemTelescopeBase {
 	}
 
 	@Override
-	public void keyControl(EnumPhotopticsKeys key, EntityPlayer player,ItemStack usingItem) {
-		if(!usingItem.hasTagCompound()) {
-			usingItem.setTagCompound(new NBTTagCompound());
-			usingItem.getTagCompound().setInteger("zoom", 0);
-		}
-		
-		int current = usingItem.getTagCompound().getInteger("zoom");
-		
-		switch(key) {
-		case ZoomIn:
-			current = Math.min(this.maxZoom, current+1);
-			break;
-		case ZoomOut:
-			current = Math.max(0, current-1);
-			break;
-		}
-		
-		usingItem.getTagCompound().setInteger("zoom", current);
-		
-		StellarAPIReference.updateScope(player);
+	public IOpticalProperties getOpticalProperty(ItemStack stack) {
+		return new BinocularsOpticalProperty();
 	}
 }

@@ -19,19 +19,19 @@ public class EntityTelescopeSimulator extends Entity {
 
 	@Override
 	protected void entityInit() {
-		// TODO Auto-generated method stub
+		// TODO Entity Init
 		
 	}
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
-		// TODO Auto-generated method stub
+		// TODO read
 		
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {
-		// TODO Auto-generated method stub
+		// TODO write
 		
 	}
 	
