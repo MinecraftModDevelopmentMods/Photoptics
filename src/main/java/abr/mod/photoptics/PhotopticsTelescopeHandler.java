@@ -56,7 +56,7 @@ public class PhotopticsTelescopeHandler {
 				Photoptics.logger.info(name);
 				if(command != null && player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).onObserve(object)) {
 					MinecraftServer server = player.getServer();
-					for(String splitted : command.split("\\|"))
+					for(String splitted : command.split(";"))
 						server.getCommandManager().executeCommand(server, splitted);
 					Photoptics.logger.info("Found");
 					return;

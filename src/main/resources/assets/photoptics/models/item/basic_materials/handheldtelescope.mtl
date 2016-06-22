@@ -2,4 +2,4 @@
 # File Created: 21.05.2016 00:03:08
 
 newmtl telescope
-map_Kd photoptics:basic_materials
+map_Kd photoptics:items/basic_materials

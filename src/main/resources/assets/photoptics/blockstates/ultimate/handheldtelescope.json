@@ -1,0 +1,42 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {},
+        "model": "photoptics:ultimate/handheldtelescope.obj"
+     },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{
+            "transform": {
+                "firstperson_righthand": {
+                    "translation": [0.1, 0, 0],
+                    "rotation": [ { "y": 0}, {"x": -60}, {"z": 0} ],
+                    "scale": 0.007
+                },
+                "firstperson_lefthand": {
+                    "translation": [0.1, 0, 0],
+                    "rotation": [ { "y": 0}, {"x": -60}, {"z": 0} ],
+                    "scale": 0.007
+                },
+                "thirdperson_righthand": {
+                    "translation": [0, 0, 0],
+                    "rotation": [ { "y": 0}, {"x": 0}, {"z": 0} ],
+                    "scale": 0.01
+                },
+                "thirdperson_lefthand": {
+                    "translation": [0, 0, 0],
+                    "rotation": [ { "y": 0}, {"x": 0}, {"z": 0} ],
+                    "scale": 0.01
+                },
+                "gui": {
+                    "translation": [-0.3, -0.3, 0],
+                    "rotation": [ { "y": 0}, {"x": 0}, {"z": -45} ],
+                    "scale": 0.007
+                },
+                "ground": {
+                    "scale": 0.007
+                }
+            }
+        }]  
+     }
+}

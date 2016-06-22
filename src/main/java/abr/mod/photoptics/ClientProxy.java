@@ -1,12 +1,12 @@
 package abr.mod.photoptics;
 
+import abr.mod.photoptics.item.ItemTelescopeBase;
 import abr.mod.photoptics.item.PhotopticsItems;
 import abr.mod.photoptics.render.RenderEventHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,14 +23,14 @@ public class ClientProxy extends CommonProxy {
 
 	public void registerItemRenderers() {
 		OBJLoader.INSTANCE.addDomain(Photoptics.resourceid);
-		for(Item binocular : PhotopticsItems.INSTANCE.binocularsList) {
+		for(ItemTelescopeBase binocular : PhotopticsItems.INSTANCE.binocularsList) {
 			ModelLoader.setCustomModelResourceLocation(binocular,
-					0, new ModelResourceLocation(Photoptics.resourceid + ":" + "binoculars", "inventory"));
+					0, new ModelResourceLocation(Photoptics.resourceid + ":" + binocular.getSubDomain() + "/" + "binoculars", "inventory"));
 		}
 
-		for(Item handheldTelescope : PhotopticsItems.INSTANCE.handheldTelescopeList) {
+		for(ItemTelescopeBase handheldTelescope : PhotopticsItems.INSTANCE.handheldTelescopeList) {
 			ModelLoader.setCustomModelResourceLocation(handheldTelescope,
-					0, new ModelResourceLocation(Photoptics.resourceid + ":" + "handheldtelescope", "inventory"));
+					0, new ModelResourceLocation(Photoptics.resourceid + ":" + handheldTelescope.getSubDomain() + "/" + "handheldtelescope", "inventory"));
 		}
 	}
 

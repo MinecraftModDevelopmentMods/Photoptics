@@ -1,0 +1,5 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 21.05.2016 00:03:08
+
+newmtl telescope
+map_Kd photoptics:items/diamond_blue

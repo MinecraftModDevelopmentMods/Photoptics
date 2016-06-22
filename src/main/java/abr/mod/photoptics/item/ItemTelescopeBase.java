@@ -70,4 +70,8 @@ public abstract class ItemTelescopeBase extends Item {
 	@SideOnly(Side.CLIENT)
 	public abstract IOverlayRenderer getOverlayRenderer(ItemStack stack);
 
+	public String getSubDomain() {
+		return material.resourceName;
+	}
+
 }

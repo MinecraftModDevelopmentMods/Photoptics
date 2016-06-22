@@ -17,16 +17,16 @@ public class TelescopeMaterial {
 	public final double zoomMultiplier;
 	public final String name;
 	public final WaveIntensive filterProperty;
-	public final ResourceLocation textureLocation;
+	public final String resourceName;
 	public final Map<Character, ItemStack> recipeItems = Maps.newHashMap();
 
-	public TelescopeMaterial(String name, double red, double green, double blue, ResourceLocation textureLocation, double lumMult, double zoomMult) {
+	public TelescopeMaterial(String name, double red, double green, double blue, String resourceName, double lumMult, double zoomMult) {
 		this.name = name;
 		this.filterProperty = new WaveIntensive(
 				ImmutableMap.of(Wavelength.red, red,
 						Wavelength.V, green, Wavelength.B, blue)
 				);
-		this.textureLocation = textureLocation;
+		this.resourceName = resourceName;
 		
 		this.lumMultiplier = lumMult;
 		this.zoomMultiplier = zoomMult;

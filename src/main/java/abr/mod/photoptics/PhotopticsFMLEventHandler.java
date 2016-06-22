@@ -10,5 +10,7 @@ public class PhotopticsFMLEventHandler {
 		if(event.getModID().equals(Photoptics.modid))
 			Photoptics.instance.getConfigManager().syncFromGUI();
 	}
+	
+	// TODO persistence
 
 }
