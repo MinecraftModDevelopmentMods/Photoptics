@@ -42,12 +42,15 @@ public class PlayerObservationData implements IObservationData {
 
 	@Override
 	public void deserializeNBT(NBTBase nbt) {
+		observedSet.clear();
+		limitSet.clear();
+
 		NBTTagList tagList = ((NBTTagCompound)nbt).getTagList("observedInfo", 10);
 		for(int i = 0; i < tagList.tagCount(); i++) {
 			NBTTagCompound observedInfo = tagList.getCompoundTagAt(i);
 			String observed = observedInfo.getString("name");
 			observedSet.setCount(observed, observedInfo.getShort("count"));
-			observedSet.setCount(observed, observedInfo.getShort("limit"));
+			limitSet.setCount(observed, observedInfo.getShort("limit"));
 		}
 	}
 

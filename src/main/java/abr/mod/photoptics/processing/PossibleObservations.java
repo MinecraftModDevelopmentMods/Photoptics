@@ -33,14 +33,14 @@ public class PossibleObservations extends SimpleNBTConfig {
 
 	public PossibleObservations() {
 		ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
-		builder.put("Sun", "/observe @p resetcount;/effect @p 15 3 1");
-		builder.put("Moon", "/observe @p resetcount;/summon Enderman;/summon Enderman;/summon Enderman");
+		builder.put("Sun", "/observe resetcount @p;/effect @p 15 3 1");
+		builder.put("Moon", "/observe resetcount @p;/summon Enderman;/summon Enderman;/summon Enderman");
 
 		builder.put("UMa79Zet", "/give @p iron_ingot 4");
 		builder.put("Cep0Mu", "/give @p redstone 16");
 		builder.put("Lyr4Eps", "/give @p iron_pickaxe 2;/give @p iron_ingot 8");
 
-		builder.put("Andromeda Galaxy", "/observe @p resetcount;/give @p milk_bucket");
+		builder.put("Andromeda Galaxy", "/observe resetcount @p;/give @p milk_bucket");
 
 		builder.put("Orion Nebula", "/give @p potato 2;/give @p carrot 2");
 
@@ -61,8 +61,8 @@ public class PossibleObservations extends SimpleNBTConfig {
 
 		builder.put("Triangulum Galaxy", "/give @p redstone_block 16;/give @p iron_block 8;/give @p gold_block 4;/give @p record_chirp");
 
-		builder.put("Whirlpool Galaxy", "/observe @p resetcount;/give @p lapis_block 2;/give @p glowstone 4;/give @p gold_ingot 4");
-		builder.put("Sunflower Galaxy", "/observe @p resetcount;/give @p quartz_block 4;/give @p gold_ingot 4");
+		builder.put("Whirlpool Galaxy", "/observe resetcount @p;/give @p lapis_block 2;/give @p glowstone 4;/give @p gold_ingot 4");
+		builder.put("Sunflower Galaxy", "/observe resetcount @p;/give @p quartz_block 4;/give @p gold_ingot 4");
 		builder.put("Pinwheel Galaxy", "/give @p dragon_egg;/give @p diamond_block 4;/give @p gold_block 16");
 		this.rewardProperty = new ConfigPropertyStringMap("Observation_Rewards", "observationRewards", builder.build());
 		

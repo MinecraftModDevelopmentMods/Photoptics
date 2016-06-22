@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.Logger;
 
+import abr.mod.photoptics.command.CommandObserve;
 import abr.mod.photoptics.item.PhotopticsItems;
 import abr.mod.photoptics.network.PhotopticsNetworkHandler;
 import abr.mod.photoptics.processing.PhotopticsRecipes;
@@ -56,7 +57,6 @@ public class Photoptics {
 
 		MinecraftForge.EVENT_BUS.register(new TickEventHandler());
 		MinecraftForge.EVENT_BUS.register(new PhotopticsForgeEventHandler());
-		MinecraftForge.EVENT_BUS.register(new TickEventHandler());
 		MinecraftForge.EVENT_BUS.register(new PhotopticsFMLEventHandler());
 		networkHandler.register();
 
@@ -78,7 +78,9 @@ public class Photoptics {
 	}
 
 	@EventHandler
-	public void serverStarting(FMLServerStartingEvent event) { }
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new CommandObserve());
+	}
 
 	public ConfigManager getConfigManager() {
 		return this.manager;
