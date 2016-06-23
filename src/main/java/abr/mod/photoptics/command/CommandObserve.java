@@ -25,17 +25,18 @@ public class CommandObserve extends CommandBase {
 		if(args.length < 3)
 			throw new CommandException("command.photoptics.observe.description");
 		
-		EntityPlayer player = this.getPlayer(server, sender, args[1]);
+		EntityPlayer player = getPlayer(server, sender, args[1]);
+		
 		if(args[0].equals("setlimit")) {
 			short count = 1;
 			if(args.length > 3)
-				count = (short) this.parseInt(args[3], 0, Short.MAX_VALUE);
-			player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).setLimit(args[2], count);
+				count = (short) this.parseInt(args[args.length-1], 0, Short.MAX_VALUE);
+			player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).setLimit(args[2].replace('_', ' '), count);
 		} else if(args[0].equals("resetcount")) {
 			short count = 0;
 			if(args.length > 3)
-				count = (short) this.parseInt(args[3], 0, Short.MAX_VALUE);
-			player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).reset(args[2], count);
+				count = (short) this.parseInt(args[args.length-1], 0, Short.MAX_VALUE);
+			player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).reset(args[2].replace('_', ' '), count);
 		}
 	}
 }

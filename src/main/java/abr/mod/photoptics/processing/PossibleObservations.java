@@ -34,7 +34,7 @@ public class PossibleObservations extends SimpleNBTConfig {
 	public PossibleObservations() {
 		ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
 		builder.put("Sun", "/observe resetcount @p @o; /effect @p 15 3 1");
-		builder.put("Moon", "/observe resetcount @p @o; /summon Enderman; /summon Enderman; /summon Enderman");
+		builder.put("Moon", "/observe resetcount @p @o; /summon Enderman @x @y @z");
 
 		builder.put("UMa79Zet", "/give @p iron_ingot 4");
 		builder.put("Cep0Mu", "/give @p redstone 16");
@@ -56,7 +56,7 @@ public class PossibleObservations extends SimpleNBTConfig {
 		builder.put("Pup2", "/observe resetcount @p @o; /give @p iron_ingot 2");
 		builder.put("Aur24Phi", "/observe resetcount @p @o; /give @p iron_ingot 2");
 
-		builder.put("Ring Nebula", "/observe resetcount @p @o; /give @p redstone_block 8; /give @p glowstone 8; /give @p gold_ingot 16");
+		builder.put("Ring Nebula", "/observe resetcount @p @o; /give @p redstone_block 1; /give @p glowstone 1; /give @p gold_ingot 2");
 		builder.put("Crab Nebula", "/give @p nether_star; /give @p gold_block 8");
 
 		builder.put("Triangulum Galaxy", "/give @p redstone_block 16; /give @p iron_block 8; /give @p gold_block 4; /give @p record_chirp");

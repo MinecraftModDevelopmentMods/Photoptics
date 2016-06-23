@@ -1,25 +1,44 @@
 package abr.mod.photoptics.processing;
 
+import java.util.Map;
+
 import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multiset;
 
+import abr.mod.photoptics.Photoptics;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import stellarapi.api.celestials.ICelestialObject;
 
 public class PlayerObservationData implements IObservationData {
 
 	private Multiset<String> observedSet = HashMultiset.create();
 	private Multiset<String> limitSet = HashMultiset.create();
+	private Map<String, Long> lastTickObserved = Maps.newHashMap();
+	//private Map<String, Long> neededTickDuration = Maps.newHashMap();
+	
+	private long getUniversalTick() {
+		return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld().getTotalWorldTime();
+	}
 
 	public boolean onObserve(ICelestialObject object) {
-		if(!limitSet.contains(object.getName()))
-			limitSet.add(object.getName());
+		String id = object.getName();
+		
+		if(!limitSet.contains(id))
+			limitSet.add(id);
+		
+		long currentTick = this.getUniversalTick();
 
-		if(observedSet.count(object.getName()) < limitSet.count(object.getName())) {
-			observedSet.add(object.getName());
+		// TODO Check for dynamic limit, currently it checks every 1 second
+		if(lastTickObserved.containsKey(id) && lastTickObserved.get(id) > currentTick - 20)
+			return false;
+
+		if(observedSet.count(id) < limitSet.count(id)) {
+			observedSet.add(id);
+			lastTickObserved.put(id, currentTick);
 			return true;
 		} else return false;
 	}
@@ -33,6 +52,7 @@ public class PlayerObservationData implements IObservationData {
 			observedInfo.setString("name", observed);
 			observedInfo.setShort("count", (short) observedSet.count(observed));
 			observedInfo.setShort("limit", (short) limitSet.count(observed));
+			observedInfo.setLong("time", lastTickObserved.get(observed).longValue());
 
 			tagList.appendTag(observedInfo);
 		}
@@ -44,6 +64,7 @@ public class PlayerObservationData implements IObservationData {
 	public void deserializeNBT(NBTBase nbt) {
 		observedSet.clear();
 		limitSet.clear();
+		lastTickObserved.clear();
 
 		NBTTagList tagList = ((NBTTagCompound)nbt).getTagList("observedInfo", 10);
 		for(int i = 0; i < tagList.tagCount(); i++) {
@@ -51,12 +72,14 @@ public class PlayerObservationData implements IObservationData {
 			String observed = observedInfo.getString("name");
 			observedSet.setCount(observed, observedInfo.getShort("count"));
 			limitSet.setCount(observed, observedInfo.getShort("limit"));
+			lastTickObserved.put(observed, observedInfo.getLong("time"));
 		}
 	}
 
 	@Override
 	public void reset(String objectID, short count) {
 		observedSet.setCount(objectID, count);
+		Photoptics.logger.info(String.format("Count reset for %s to %d", objectID, count));
 		if(limitSet.count(objectID) < count)
 			limitSet.setCount(objectID, count);
 	}

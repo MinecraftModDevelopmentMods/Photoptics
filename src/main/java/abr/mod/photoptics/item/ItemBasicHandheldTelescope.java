@@ -96,7 +96,7 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 				this.zoom--;
 				StellarAPIReference.updateScope(controller);
 			} else if(key == EnumPhotopticsKeys.Observe){
-				PhotopticsTelescopeHandler.onObserve(controller, 0.7 / getTelescopeMaterial().zoomMultiplier);
+				PhotopticsTelescopeHandler.onObserve(controller, 1.5 / (getTelescopeMaterial().zoomMultiplier));
 			}
 		}
 

@@ -1,20 +1,17 @@
 package abr.mod.photoptics;
 
 import abr.mod.photoptics.item.ITelescopeProperty;
-import abr.mod.photoptics.item.ItemTelescopeBase;
 import abr.mod.photoptics.processing.PlayerDataProvider;
-import abr.mod.photoptics.processing.PlayerObservationData;
 import abr.mod.photoptics.processing.PossibleObservations;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
 import stellarapi.api.StellarAPICapabilities;
 import stellarapi.api.StellarAPIReference;
 import stellarapi.api.celestials.CelestialCollectionManager;
 import stellarapi.api.celestials.ICelestialObject;
-import stellarapi.api.helper.LivingItemAccessHelper;
 import stellarapi.api.interact.IOpticalProperties;
 import stellarapi.api.lib.math.SpCoord;
 import stellarapi.api.optics.IViewScope;
@@ -56,8 +53,8 @@ public class PhotopticsTelescopeHandler {
 			for(ICelestialObject object : manager.findAllObjectsInRange(currentDirection, observeRange)) {
 				double magnitude = object.getStandardMagnitude();
 				magnitude -= 2.5 * Math.log10(scope.getLGP());
-				if(magnitude < 6.0)
-					return;
+				if(magnitude > 6.0)
+					continue;
 
 				String name = object.getName();
 				String command = PossibleObservations.instance().entryMap().get(name);
@@ -67,7 +64,10 @@ public class PhotopticsTelescopeHandler {
 					for(String splitted : command.split(";")) {
 						splitted = splitted
 								.replace("@p", player.getUniqueID().toString())
-								.replace("@o", name)
+								.replace("@o", name.replace(' ', '_'))
+								.replace("@x", String.valueOf(MathHelper.floor_double(player.posX)))
+								.replace("@y", String.valueOf(MathHelper.floor_double(player.posY)))
+								.replace("@z", String.valueOf(MathHelper.floor_double(player.posZ)))
 								.trim();
 						server.getCommandManager().executeCommand(server, splitted);
 					}

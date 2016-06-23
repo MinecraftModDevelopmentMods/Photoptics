@@ -41,21 +41,21 @@ public enum PhotopticsItems {
 				.setRecipeItem('I', new ItemStack(Blocks.GOLD_BLOCK));
 		
 		diamondGreen = new TelescopeMaterial("diamondGreen", 0.3, 1.0, 0.3,
-				"diamond_green", 9.0, 2.5)
+				"diamond_green", 7.0, 2.5)
 				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
 				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
 				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 5))
 				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 5));
 
 		diamondBlue = new TelescopeMaterial("diamondBlue", 0.3, 0.3, 1.0,
-				"diamond_blue", 9.0, 2.5)
+				"diamond_blue", 7.0, 2.5)
 				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
 				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
 				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 3))
 				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 3));
 
 		diamondRed = new TelescopeMaterial("diamondRed", 1.0, 0.3, 0.3,
-				"diamond_red", 9.0, 2.5)
+				"diamond_red", 7.0, 2.5)
 				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
 				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
 				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 14))
