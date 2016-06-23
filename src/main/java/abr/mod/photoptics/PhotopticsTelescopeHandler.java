@@ -59,7 +59,7 @@ public class PhotopticsTelescopeHandler {
 				String name = object.getName();
 				String command = PossibleObservations.instance().entryMap().get(name);
 				Photoptics.logger.info(name);
-				if(command != null && player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).onObserve(object)) {
+				if(command != null && player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).onObserve(object, player)) {
 					MinecraftServer server = player.getServer();
 					for(String splitted : command.split(";")) {
 						splitted = splitted
