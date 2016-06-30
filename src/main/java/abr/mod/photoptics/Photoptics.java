@@ -24,6 +24,7 @@ import stellarapi.api.lib.config.ConfigManager;
 
 // TODO Total Regeneration
 @Mod(modid=Photoptics.modid, version=Photoptics.version,
+acceptedMinecraftVersions="[1.9.4, 1.11.0)",
 dependencies="required-after:StellarAPI@[0.5.4.1.0, 0.5.5.1.0)", guiFactory="abr.mod.photoptics.config.POConfigGuiFactory")
 public class Photoptics {
 	public static final String modid = "Photoptics";
