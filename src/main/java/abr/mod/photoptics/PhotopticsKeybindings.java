@@ -54,7 +54,7 @@ public class PhotopticsKeybindings {
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		if(player != null) {
 			for(Map.Entry<EnumPhotopticsKeys, KeyBinding> entry : keyMap.entrySet()) {
-				if((entry.getKey().isContinuous() && Keyboard.isKeyDown(entry.getValue().getKeyCode())))
+				if((entry.getKey().isContinuous() && entry.getValue().isKeyDown()))
 				{
 					Photoptics.instance.getNetworkHandler().sendKeyInput(entry.getKey());
 					PhotopticsTelescopeHandler.onKeyInput(player, entry.getKey());
