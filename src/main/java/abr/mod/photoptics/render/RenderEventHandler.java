@@ -16,7 +16,7 @@ public class RenderEventHandler {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void renderOverlay(RenderGameOverlayEvent.Pre event) {
 		Minecraft mc = Minecraft.getMinecraft();
-		ItemStack usingItem = mc.thePlayer.getActiveItemStack();
+		ItemStack usingItem = mc.player.getActiveItemStack();
 		
 		if(usingItem != null && usingItem.getItem() instanceof ItemTelescopeBase)
 		{

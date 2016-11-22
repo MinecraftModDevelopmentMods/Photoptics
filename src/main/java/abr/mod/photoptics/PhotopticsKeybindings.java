@@ -36,7 +36,7 @@ public class PhotopticsKeybindings {
 	
 	@SubscribeEvent
 	public void onKeyInputEvent(KeyInputEvent event) {
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		if(player != null) {
 			for(Map.Entry<EnumPhotopticsKeys, KeyBinding> entry : keyMap.entrySet()) {
 				if(!entry.getKey().isContinuous() && entry.getValue().isPressed())
@@ -51,7 +51,7 @@ public class PhotopticsKeybindings {
 	
 	@SubscribeEvent
 	public void onTickEvent(TickEvent.ClientTickEvent event) {
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		if(player != null) {
 			for(Map.Entry<EnumPhotopticsKeys, KeyBinding> entry : keyMap.entrySet()) {
 				if((entry.getKey().isContinuous() && entry.getValue().isKeyDown()))

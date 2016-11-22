@@ -1,6 +1,6 @@
 [
 {
-  "modid": "Photoptics",
+  "modid": "photoptics",
   "name": "Photoptics",
   "description": "Mod about Optics.",
   "version": "${version}",

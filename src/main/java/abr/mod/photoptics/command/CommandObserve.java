@@ -13,12 +13,12 @@ import stellarapi.api.PeriodHelper;
 public class CommandObserve extends CommandBase {
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "observe";
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender sender) {
+	public String getUsage(ICommandSender sender) {
 		return "command.photoptics.observe.description";
 	}
 
@@ -35,7 +35,7 @@ public class CommandObserve extends CommandBase {
 				count = (short) this.parseInt(args[args.length-1], 0, Short.MAX_VALUE);
 			player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).setLimit(args[2].replace('_', ' '), count);
 			if(sender == player) {
-				player.addChatMessage(new TextComponentTranslation("command.photoptics.observe.setlimit.info", player, args[2].replace('_', ' '), count));
+				player.sendMessage(new TextComponentTranslation("command.photoptics.observe.setlimit.info", player, args[2].replace('_', ' '), count));
 			}
 		} else if(args[0].equals("resetcount")) {
 			short count = 0;
@@ -43,7 +43,7 @@ public class CommandObserve extends CommandBase {
 				count = (short) this.parseInt(args[args.length-1], 0, Short.MAX_VALUE);
 			player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).reset(args[2].replace('_', ' '), count);
 			if(sender == player) {
-				player.addChatMessage(new TextComponentTranslation("command.photoptics.observe.resetcount.info", player, args[2].replace('_', ' '), count));
+				player.sendMessage(new TextComponentTranslation("command.photoptics.observe.resetcount.info", player, args[2].replace('_', ' '), count));
 			}
 		} else if(args[0].equals("setwait")) {
 			long count = 1;
@@ -70,7 +70,7 @@ public class CommandObserve extends CommandBase {
 
 			player.getCapability(PlayerDataProvider.OBSERVATION_DATA, EnumFacing.UP).setWaitDuration(args[2].replace('_', ' '), unit * count);
 			if(sender == player) {
-				player.addChatMessage(new TextComponentTranslation("command.photoptics.observe.setwait.info", player, args[2].replace('_', ' '), unit * count));
+				player.sendMessage(new TextComponentTranslation("command.photoptics.observe.setwait.info", player, args[2].replace('_', ' '), unit * count));
 			}
 		}
 	}

@@ -10,9 +10,9 @@ public abstract class TileEntityTelescopeBase extends TileEntity {
 	private EntityTelescopeSimulator simulator;
 	
     public void setWorldObj(World world) {
-        this.worldObj = world;
-        this.simulator = new EntityTelescopeSimulator(this.worldObj, this);
-        worldObj.spawnEntityInWorld(this.simulator);
+        this.world = world;
+        this.simulator = new EntityTelescopeSimulator(this.world, this);
+        world.spawnEntity(this.simulator);
     }
 
 

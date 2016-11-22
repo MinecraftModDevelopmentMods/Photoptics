@@ -49,13 +49,13 @@ public class PlayerObservationData implements IObservationData {
 				long day = (long) period.getPeriodLength();
 				long dayLeft = remainTick / day;
 				long secondLeft = (remainTick % day) / 20;
-				player.addChatComponentMessage(this.withStyle(new TextComponentTranslation("info.photoptics.observe.timeleftds", id, dayLeft, secondLeft)));
+				player.sendMessage(this.withStyle(new TextComponentTranslation("info.photoptics.observe.timeleftds", id, dayLeft, secondLeft)));
 			} else {
 				long secondLeft = remainTick / 20L;
 				long tickLeft = remainTick % 20L;
 				if(secondLeft > 0)
-					player.addChatComponentMessage(this.withStyle(new TextComponentTranslation("info.photoptics.observe.timeleftst", id, secondLeft, tickLeft)));
-				else player.addChatComponentMessage(this.withStyle(new TextComponentTranslation("info.photoptics.observe.timeleftt", id, tickLeft)));
+					player.sendMessage(this.withStyle(new TextComponentTranslation("info.photoptics.observe.timeleftst", id, secondLeft, tickLeft)));
+				else player.sendMessage(this.withStyle(new TextComponentTranslation("info.photoptics.observe.timeleftt", id, tickLeft)));
 			}
 
 			return false;
@@ -66,7 +66,7 @@ public class PlayerObservationData implements IObservationData {
 			lastTickObserved.put(id, currentTick);
 			return true;
 		} else {
-			player.addChatComponentMessage(this.withStyle(new TextComponentTranslation("info.photoptics.observe.reachlimit", id, limitSet.count(id))));
+			player.sendMessage(this.withStyle(new TextComponentTranslation("info.photoptics.observe.reachlimit", id, limitSet.count(id))));
 			return false;
 		}
 	}

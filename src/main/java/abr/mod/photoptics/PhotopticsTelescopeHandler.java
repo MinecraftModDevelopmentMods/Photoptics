@@ -38,7 +38,7 @@ public class PhotopticsTelescopeHandler {
 	 * @param observeRange the observing range in degrees
 	 * */
 	public static void onObserve(EntityPlayer player, double observeRange) {
-		if(player.worldObj.isRemote)
+		if(player.world.isRemote)
 			return;
 		
 		float rotationYaw = player.rotationYaw;
@@ -46,7 +46,7 @@ public class PhotopticsTelescopeHandler {
 
 		SpCoord currentDirection = new SpCoord(( - rotationYaw) % 360.0, rotationPitch);
 		
-		CelestialCollectionManager manager = StellarAPIReference.getCollectionManager(player.worldObj);
+		CelestialCollectionManager manager = StellarAPIReference.getCollectionManager(player.world);
 		IViewScope scope = StellarAPIReference.getScope(player);
 
 		if(manager != null && scope != null) {
@@ -65,9 +65,9 @@ public class PhotopticsTelescopeHandler {
 						splitted = splitted
 								.replace("@p", player.getUniqueID().toString())
 								.replace("@o", name.replace(' ', '_'))
-								.replace("@x", String.valueOf(MathHelper.floor_double(player.posX)))
-								.replace("@y", String.valueOf(MathHelper.floor_double(player.posY)))
-								.replace("@z", String.valueOf(MathHelper.floor_double(player.posZ)))
+								.replace("@x", String.valueOf(MathHelper.floor(player.posX)))
+								.replace("@y", String.valueOf(MathHelper.floor(player.posY)))
+								.replace("@z", String.valueOf(MathHelper.floor(player.posZ)))
 								.trim();
 						server.getCommandManager().executeCommand(server, splitted);
 					}

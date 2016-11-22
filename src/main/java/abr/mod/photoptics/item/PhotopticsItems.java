@@ -18,8 +18,8 @@ public enum PhotopticsItems {
 	
 	public final CreativeTabs tabPhotoptics = new CreativeTabs(Photoptics.resourceid) {
 		@Override
-		public Item getTabIconItem() {
-			return basicBinoculars;
+		public ItemStack getTabIconItem() {
+			return new ItemStack(basicBinoculars);
 		}
 	};
 
