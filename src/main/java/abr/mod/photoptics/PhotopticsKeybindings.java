@@ -14,7 +14,7 @@ import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class PhotopticsKeybindings {
@@ -35,7 +35,16 @@ public class PhotopticsKeybindings {
 	}
 	
 	@SubscribeEvent
-	public void onKeyInputEvent(KeyInputEvent event) {
+	public void onKeyInputEvent(InputEvent.KeyInputEvent event) {
+		this.checkInput();
+	}
+	
+	@SubscribeEvent
+	public void onMouseInputEvent(InputEvent.MouseInputEvent event) {
+		this.checkInput();
+	}
+
+	public void checkInput() {
 		EntityPlayer player = Minecraft.getMinecraft().player;
 		if(player != null) {
 			for(Map.Entry<EnumPhotopticsKeys, KeyBinding> entry : keyMap.entrySet()) {
