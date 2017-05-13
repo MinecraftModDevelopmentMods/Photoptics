@@ -11,8 +11,13 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
+@Mod.EventBusSubscriber
 public enum PhotopticsItems {
 	INSTANCE;
 	
@@ -30,8 +35,15 @@ public enum PhotopticsItems {
 
 	public List<ItemTelescopeBase> binocularsList = Lists.newArrayList();
 	public List<ItemTelescopeBase> handheldTelescopeList = Lists.newArrayList();
-	
-	public void preInit() {
+
+	@SubscribeEvent
+	public static void onRegisterItems(RegistryEvent.Register<Item> itemRegistry) {
+		INSTANCE.registerItems(itemRegistry);
+	}
+
+	private void registerItems(RegistryEvent.Register<Item> itemRegistry) {
+		IForgeRegistry<Item> registry = itemRegistry.getRegistry();
+
 		basic = new TelescopeMaterial("basic", 0.6, 0.7, 0.8,
 				"basic_materials", 1.0, 1.2);
 		
@@ -83,7 +95,7 @@ public enum PhotopticsItems {
 			}
 
 			binoculars.preRegister();
-			GameRegistry.register(binoculars);
+			registry.register(binoculars);
 		}
 		
 		for(ItemTelescopeBase handheldTelescope : handheldTelescopeList) {
@@ -94,7 +106,7 @@ public enum PhotopticsItems {
 			}
 
 			handheldTelescope.preRegister();
-			GameRegistry.register(handheldTelescope);
+			registry.register(handheldTelescope);
 		}
 	}
 
@@ -104,7 +116,7 @@ public enum PhotopticsItems {
     			.setTelescopeRegistryName(new ResourceLocation(Photoptics.resourceid, String.format("binoculars_%s", material.name.toLowerCase())))
     			.setUnlocalizedName(String.format("photoptics.binoculars.%s", material.name))
     			.setCreativeTab(tabPhotoptics).setMaxStackSize(1));
-    	
+
 		handheldTelescopeList.add((ItemTelescopeBase) new ItemBasicHandheldTelescope()
     			.setTelescopeMaterial(material)
     			.setTelescopeRegistryName(new ResourceLocation(Photoptics.resourceid, String.format("handheldtelescope_%s", material.name.toLowerCase())))

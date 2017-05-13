@@ -9,11 +9,11 @@ import abr.mod.photoptics.item.PhotopticsItems;
 import abr.mod.photoptics.network.PhotopticsNetworkHandler;
 import abr.mod.photoptics.processing.PhotopticsRecipes;
 import abr.mod.photoptics.processing.PossibleObservations;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -32,7 +32,7 @@ public class Photoptics {
 	public static final String version = "@VERSION@";
 
 	// The instance of Photoptics
-	@Instance(Photoptics.modid)
+	@Mod.Instance(Photoptics.modid)
 	public static Photoptics instance;
 
 	@SidedProxy(clientSide="abr.mod.photoptics.ClientProxy", serverSide="abr.mod.photoptics.CommonProxy")
@@ -47,7 +47,7 @@ public class Photoptics {
 		return this.networkHandler;
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) { 
 		logger = event.getModLog();
 
@@ -61,24 +61,23 @@ public class Photoptics {
 		MinecraftForge.EVENT_BUS.register(new PhotopticsFMLEventHandler());
 		networkHandler.register();
 
-		PhotopticsItems.INSTANCE.preInit();
-
 		manager.register(PossibleObservations.categoryName, PossibleObservations.instance());
 
 		proxy.registerRenderers();
 	}
+	
 
-	@EventHandler
+	@Mod.EventHandler
 	public void load(FMLInitializationEvent event) throws IOException {
 		manager.syncFromFile();
 		PhotopticsRecipes.init();
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void serverStarting(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandObserve());
 	}
