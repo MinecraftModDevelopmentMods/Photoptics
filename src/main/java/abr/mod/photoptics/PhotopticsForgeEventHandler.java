@@ -2,6 +2,7 @@ package abr.mod.photoptics;
 
 import abr.mod.photoptics.processing.IObservationData;
 import abr.mod.photoptics.processing.PlayerDataProvider;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -12,9 +13,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class PhotopticsForgeEventHandler {
 
 	@SubscribeEvent
-	public void onAttachCapabilities(AttachCapabilitiesEvent.Entity event) {
-		if(event.getEntity() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) event.getEntity();
+	public void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
+		if(event.getObject() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.getObject();
 			event.addCapability(
 					new ResourceLocation(Photoptics.resourceid, "opticsdata"),
 					new PlayerDataProvider());

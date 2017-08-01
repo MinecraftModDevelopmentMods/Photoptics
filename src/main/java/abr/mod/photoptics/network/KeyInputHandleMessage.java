@@ -39,7 +39,7 @@ public class KeyInputHandleMessage implements IMessage {
 
 		@Override
 		public IMessage onMessage(KeyInputHandleMessage message, MessageContext ctx) {
-			final EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+			final EntityPlayerMP player = ctx.getServerHandler().player;
 			final EnumPhotopticsKeys key = message.keyEnum;
 			Photoptics.proxy.registerTask(new Runnable() {
 				@Override

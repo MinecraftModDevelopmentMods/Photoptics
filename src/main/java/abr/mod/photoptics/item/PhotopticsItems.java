@@ -14,10 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
-@Mod.EventBusSubscriber
 public enum PhotopticsItems {
 	INSTANCE;
 	
@@ -37,8 +35,9 @@ public enum PhotopticsItems {
 	public List<ItemTelescopeBase> handheldTelescopeList = Lists.newArrayList();
 
 	@SubscribeEvent
-	public static void onRegisterItems(RegistryEvent.Register<Item> itemRegistry) {
+	public void onRegisterItems(RegistryEvent.Register<Item> itemRegistry) {
 		INSTANCE.registerItems(itemRegistry);
+		Photoptics.proxy.registerRenderers();
 	}
 
 	private void registerItems(RegistryEvent.Register<Item> itemRegistry) {
@@ -48,37 +47,19 @@ public enum PhotopticsItems {
 				"basic_materials", 1.0, 1.2);
 		
 		gold = new TelescopeMaterial("gold", 0.9, 0.8, 0.5,
-				"gold_material", 3.5, 2.0)
-				.setRecipeItem('i', new ItemStack(Items.GOLD_INGOT))
-				.setRecipeItem('I', new ItemStack(Blocks.GOLD_BLOCK));
-		
+				"gold_material", 3.5, 2.0);
+
 		diamondGreen = new TelescopeMaterial("diamondGreen", 0.3, 1.0, 0.3,
-				"diamond_green", 7.0, 2.5)
-				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
-				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
-				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 5))
-				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 5));
+				"diamond_green", 7.0, 2.5);
 
 		diamondBlue = new TelescopeMaterial("diamondBlue", 0.3, 0.3, 1.0,
-				"diamond_blue", 7.0, 2.5)
-				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
-				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
-				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 3))
-				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 3));
+				"diamond_blue", 7.0, 2.5);
 
 		diamondRed = new TelescopeMaterial("diamondRed", 1.0, 0.3, 0.3,
-				"diamond_red", 7.0, 2.5)
-				.setRecipeItem('i', new ItemStack(Items.DIAMOND))
-				.setRecipeItem('I', new ItemStack(Blocks.DIAMOND_BLOCK))
-				.setRecipeItem('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 14))
-				.setRecipeItem('G', new ItemStack(Blocks.STAINED_GLASS, 1, 14));
+				"diamond_red", 7.0, 2.5);
 
 		ultimate = new TelescopeMaterial("ultimate", 0.5, 1.0, 0.5,
-				"ultimate", 90.0, 5.0)
-				.setRecipeItem('i', new ItemStack(Blocks.ENDER_CHEST))
-				.setRecipeItem('I', new ItemStack(Blocks.ENCHANTING_TABLE))
-				.setRecipeItem('g', new ItemStack(Items.ENDER_PEARL))
-				.setRecipeItem('G', new ItemStack(Items.ENDER_EYE));
+				"ultimate", 90.0, 5.0);
 
 		addMaterialItem(basic);
 		addMaterialItem(gold);
