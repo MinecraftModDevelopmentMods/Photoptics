@@ -2,19 +2,22 @@
     "type": "minecraft:crafting_shaped",
     "group": "photoptics:iron",
     "pattern": [
-        "g g",
-        "iii",
-        "g g"
+        " G ",
+        " I ",
+        " g "
     ],
     "key": {
+        "G": {
+            "item": "minecraft:glass"
+        },
         "g": {
             "item": "minecraft:glass_pane"
         },
-        "i": {
-            "item": "minecraft:iron_ingot"
+        "I": {
+            "item": "minecraft:iron_block"
         }
     },
     "result": {
-        "item": "photoptics:photopticsbasicbinoculars"
+        "item": "photoptics:basichandheldtelescope"
     }
 }

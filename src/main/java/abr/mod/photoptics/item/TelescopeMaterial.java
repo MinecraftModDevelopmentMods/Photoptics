@@ -18,7 +18,6 @@ public class TelescopeMaterial {
 	public final String name;
 	public final WaveIntensive filterProperty;
 	public final String resourceName;
-	public final Map<Character, ItemStack> recipeItems = Maps.newHashMap();
 
 	public TelescopeMaterial(String name, double red, double green, double blue, String resourceName, double lumMult, double zoomMult) {
 		this.name = name;
@@ -30,15 +29,5 @@ public class TelescopeMaterial {
 		
 		this.lumMultiplier = lumMult;
 		this.zoomMultiplier = zoomMult;
-
-		this.setRecipeItem('g', new ItemStack(Blocks.GLASS_PANE));
-		this.setRecipeItem('G', new ItemStack(Blocks.GLASS));
-		this.setRecipeItem('i', new ItemStack(Items.IRON_INGOT));
-		this.setRecipeItem('I', new ItemStack(Blocks.IRON_BLOCK));
-	}
-	
-	public TelescopeMaterial setRecipeItem(char id, ItemStack item) {
-		recipeItems.put(id, item);
-		return this;
 	}
 }

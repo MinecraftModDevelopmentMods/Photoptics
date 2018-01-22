@@ -12,7 +12,7 @@ import net.minecraft.nbt.NBTPrimitive;
 import net.minecraft.nbt.NBTTagByte;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stellarapi.api.StellarAPIReference;
+import stellarapi.api.SAPIReferences;
 import stellarapi.api.lib.math.Spmath;
 import stellarapi.api.optics.IOpticalFilter;
 import stellarapi.api.optics.IViewScope;
@@ -91,10 +91,10 @@ public class ItemBasicHandheldTelescope extends ItemTelescopeBase {
 		public void keyControl(EnumPhotopticsKeys key, EntityPlayer controller) {
 			if(key == EnumPhotopticsKeys.ZoomIn && this.zoom < getMaxZoom()) {
 				this.zoom++;
-				StellarAPIReference.updateScope(controller);
+				SAPIReferences.updateScope(controller);
 			} else if(key == EnumPhotopticsKeys.ZoomOut && this.zoom > 0) {
 				this.zoom--;
-				StellarAPIReference.updateScope(controller);
+				SAPIReferences.updateScope(controller);
 			} else if(key == EnumPhotopticsKeys.Observe){
 				PhotopticsTelescopeHandler.onObserve(controller, 1.5 / (getTelescopeMaterial().zoomMultiplier));
 			}

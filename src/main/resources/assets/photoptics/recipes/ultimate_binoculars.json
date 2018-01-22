@@ -1,6 +1,6 @@
 {
     "type": "minecraft:crafting_shaped",
-    "group": "photoptics:gold",
+    "group": "photoptics:ultimate",
     "pattern": [
         "g g",
         "iii",
@@ -8,13 +8,13 @@
     ],
     "key": {
         "g": {
-            "item": "minecraft:glass_pane"
+            "item": "minecraft:ender_pearl"
         },
         "i": {
-            "item": "minecraft:gold_ingot"
+            "item": "minecraft:ender_chest"
         }
     },
     "result": {
-        "item": "photoptics:binoculars_gold"
+        "item": "photoptics:binoculars_ultimate"
     }
 }

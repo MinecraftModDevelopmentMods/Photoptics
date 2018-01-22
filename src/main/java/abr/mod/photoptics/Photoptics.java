@@ -16,13 +16,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import stellarapi.api.StellarAPIReference;
+import stellarapi.api.SAPIReferences;
 import stellarapi.api.lib.config.ConfigManager;
 
 // TODO Total Regeneration
 @Mod(modid=Photoptics.modid, version=Photoptics.version,
 acceptedMinecraftVersions="[1.12.0, 1.13.0)",
-dependencies="required-after:stellarapi@[0.7.4.1.0, 0.7.5.1.0)", guiFactory="abr.mod.photoptics.config.POConfigGuiFactory")
+dependencies="required-after:stellarapi@[1.12.2-0.4.2.1, 1.12.2-0.4.3.0)", guiFactory="abr.mod.photoptics.config.POConfigGuiFactory")
 public class Photoptics {
 	public static final String modid = "photoptics";
 	public static final String resourceid = "photoptics";
@@ -51,7 +51,7 @@ public class Photoptics {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		this.manager = new ConfigManager(config);
 
-		StellarAPIReference.getEventBus().register(new StellarAPIEventHandler());
+		SAPIReferences.getEventBus().register(new StellarAPIEventHandler());
 
 		MinecraftForge.EVENT_BUS.register(new TickEventHandler());
 		MinecraftForge.EVENT_BUS.register(new PhotopticsForgeEventHandler());

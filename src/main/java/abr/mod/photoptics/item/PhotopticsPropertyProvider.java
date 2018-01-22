@@ -5,8 +5,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
-import stellarapi.api.StellarAPICapabilities;
-import stellarapi.api.interact.IOpticalProperties;
+import stellarapi.api.SAPICapabilities;
 
 public class PhotopticsPropertyProvider implements ICapabilityProvider, INBTSerializable {
 
@@ -18,13 +17,13 @@ public class PhotopticsPropertyProvider implements ICapabilityProvider, INBTSeri
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == StellarAPICapabilities.OPTICAL_PROPERTY;
+		return capability == SAPICapabilities.OPTICAL_PROPERTY;
 	}
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if(capability == StellarAPICapabilities.OPTICAL_PROPERTY)
-			return StellarAPICapabilities.OPTICAL_PROPERTY.cast(this.opticalProperty);
+		if(capability == SAPICapabilities.OPTICAL_PROPERTY)
+			return SAPICapabilities.OPTICAL_PROPERTY.cast(this.opticalProperty);
 		else return null;
 	}
 

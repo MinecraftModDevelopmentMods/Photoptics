@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "photoptics:ultimate",
+    "pattern": [
+        " G ",
+        " I ",
+        " g "
+    ],
+    "key": {
+        "G": {
+            "item": "minecraft:ender_eye"
+        },
+        "g": {
+            "item": "minecraft:ender_pearl"
+        },
+        "I": {
+            "item": "minecraft:enchanting_table"
+        }
+    },
+    "result": {
+        "item": "photoptics:handheldtelescope_ultimate"
+    }
+}

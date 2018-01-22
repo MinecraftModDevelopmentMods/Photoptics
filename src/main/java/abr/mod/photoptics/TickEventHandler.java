@@ -6,8 +6,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import stellarapi.api.StellarAPIReference;
-import stellarapi.api.helper.LivingItemAccessHelper;
 
 public class TickEventHandler {
 	@SubscribeEvent(priority = EventPriority.HIGH)
